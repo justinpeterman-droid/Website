@@ -41,10 +41,17 @@ Static output is written to `dist/`.
 4. Update Instagram/Facebook links to the new domain.
 5. Stop using the Framer placeholder URL (`snow-rules-755686.framer.app`).
 
+## Free video & audio library
+
+Upload MP4/MP3 files to `public/media/` and register them in `src/content/media.ts`. See [public/media/README.md](public/media/README.md) for step-by-step instructions.
+
+Visitors can stream content in a modal player or download files directly from the **Library** section.
+
 ## Project structure
 
 - `src/content/site.ts` — all copy, links, and contact info
-- `src/components/` — page sections (Nav, Hero, Services, FAQ, etc.)
+- `src/content/media.ts` — free video/audio library catalog
+- `src/components/` — page sections (Nav, Hero, Services, Archive, FAQ, etc.)
 - `src/styles/global.css` — Framer design tokens and scroll-reveal utilities
 
 ## Stack

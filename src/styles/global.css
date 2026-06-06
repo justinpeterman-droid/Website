@@ -111,6 +111,11 @@
   background-color: #ffffff;
 }
 
+.archive-row:focus-visible {
+  outline: 2px solid var(--color-accent-lime);
+  outline-offset: -2px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .reveal-fade {

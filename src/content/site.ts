@@ -108,6 +108,7 @@ export const site: Site = {
 
   nav: [
     { label: "Services", href: "#services" },
+    { label: "Library", href: "#library" },
     { label: "Approach", href: "#approach" },
     { label: "About", href: "#about" },
     { label: "Contact", href: "#contact" },
