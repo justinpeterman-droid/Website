@@ -1,0 +1,12 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Archive from '../components/Archive.astro';
+import { archive } from '../content/media';
+---
+
+<SiteLayout
+  title={`Free Library | Hometown Serenity`}
+  description={archive.intro}
+>
+  <Archive />
+</SiteLayout>

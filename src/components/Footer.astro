@@ -1,95 +1,69 @@
 ---
+import Button from './Button.astro';
+import PreviewWindow from './PreviewWindow.astro';
 import { site } from '../content/site';
 
 const { brand, contact, social, nav, hero, footer } = site;
 const phoneHref = `tel:${contact.phone.replace(/[^\d+]/g, '')}`;
-
-const cardIcons = ['calendar', 'library', 'instagram', 'facebook', 'support'];
-const cardAccents = [
-  'from-accent-purple/15 to-accent-cyan/10',
-  'from-accent-lime/15 to-accent-cyan/10',
-  'from-accent-pink/15 to-accent-purple/10',
-  'from-accent-cyan/15 to-accent-lime/10',
-  'from-accent-coral/15 to-accent-pink/10',
-];
 ---
 
-<footer id="contact" class="relative overflow-hidden border-t border-border-light bg-background py-20 md:py-28">
-  <div
-    class="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(134,36,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(131,202,22,0.04)_1px,transparent_1px)] bg-[size:48px_48px]"
-    aria-hidden="true"
-  />
-  <div class="mesh-blob mesh-blob-2 !opacity-30" aria-hidden="true"></div>
-  <div class="mesh-blob mesh-blob-3 !opacity-20" aria-hidden="true"></div>
+<footer id="contact" class="border-t border-border-light py-20 md:py-28">
+  <div class="mx-auto max-w-6xl px-5 md:px-8">
+    <div class="mb-4 text-center md:mb-6">
+      <h2 class="text-2xl font-bold tracking-tight text-heading md:text-3xl">
+        Connect with {brand.name}
+      </h2>
+      <p class="mx-auto mt-3 max-w-xl text-muted">
+        Explore each destination below — every link opens what it represents in a live preview.
+      </p>
+    </div>
 
-  <div class="relative mx-auto max-w-6xl px-5 md:px-8">
-    <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
       {
-        footer.linkCards.map((card, index) => (
+        footer.linkCards.map((card) => (
           <a
             href={card.href}
             target={card.external ? '_blank' : undefined}
             rel={card.external ? 'noopener noreferrer' : undefined}
-            class="premium-card group flex flex-col rounded-2xl border border-border-light bg-white p-4 shadow-card md:p-5"
-            data-tilt
-            data-tilt-max="8"
+            class="premium-card group flex flex-col rounded-2xl border border-border-light bg-surface p-4 shadow-card"
           >
-            <div
-              class={`card-icon mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${cardAccents[index]} ring-1 ring-border`}
-            >
-              {cardIcons[index] === 'calendar' && (
-                <svg class="h-5 w-5 text-accent-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
-                </svg>
-              )}
-              {cardIcons[index] === 'library' && (
-                <svg class="h-5 w-5 text-accent-lime" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-                </svg>
-              )}
-              {cardIcons[index] === 'instagram' && (
-                <svg class="h-5 w-5 text-accent-pink" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-                </svg>
-              )}
-              {cardIcons[index] === 'facebook' && (
-                <svg class="h-5 w-5 text-accent-cyan" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                </svg>
-              )}
-              {cardIcons[index] === 'support' && (
-                <svg class="h-5 w-5 text-accent-coral" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
-                </svg>
+            {card.preview && (
+              <PreviewWindow
+                url={card.preview.url}
+                image={card.preview.image}
+                alt={card.preview.alt}
+                label={card.preview.badge}
+              />
+            )}
+            <div class="mt-4">
+              <p class="text-sm font-semibold text-heading transition-colors group-hover:text-accent-sage">
+                {card.label}
+              </p>
+              {card.description && (
+                <p class="mt-1 text-xs text-muted-light">{card.description}</p>
               )}
             </div>
-            <p class="text-sm font-semibold text-heading transition-colors group-hover:text-accent-purple">
-              {card.label}
-            </p>
-            <p class="mt-1 text-xs text-muted-light">
-              {card.external ? 'Opens in new tab' : 'On this page'}
-            </p>
           </a>
         ))
       }
     </div>
 
     <div class="mt-16 text-center md:mt-20">
-      <div class="reveal-3d inline-flex items-center gap-2 rounded-full border border-accent-lime/30 bg-white px-4 py-2 text-sm text-muted shadow-card" data-reveal-delay="0">
-        <span class="h-2 w-2 animate-pulse-glow rounded-full bg-accent-lime" aria-hidden="true"></span>
+      <div class="reveal inline-flex items-center gap-2 rounded-full border border-border-light bg-surface px-4 py-2 text-sm text-muted shadow-card" data-reveal-delay="0">
+        <span class="h-2 w-2 rounded-full bg-accent-sage" aria-hidden="true"></span>
         {footer.status}
       </div>
 
       <a
         href={`mailto:${contact.email}`}
-        class="mt-8 block break-all text-3xl font-bold tracking-tight transition-colors hover:opacity-90 sm:text-4xl md:text-5xl lg:text-6xl"
+        class="mt-8 block break-all text-3xl font-bold tracking-tight text-heading transition-colors hover:text-accent-sage sm:text-4xl md:text-5xl"
       >
-        <span class="text-gradient-pop">{contact.email}</span>
+        {contact.email}
       </a>
 
       <a
         href={phoneHref}
-        class="mt-3 inline-block text-lg font-medium text-muted transition-colors hover:text-accent-purple"
+        class="mt-3 inline-block text-lg font-medium text-muted transition-colors hover:text-heading"
       >
         {contact.phone}
       </a>
@@ -105,29 +79,22 @@ const cardAccents = [
 
     <div class="mt-14 flex justify-center md:mt-16">
       <nav
-        class="reveal-3d inline-flex flex-wrap items-center justify-center gap-1 rounded-full border border-accent-purple/20 bg-white/90 p-1.5 shadow-glow-purple backdrop-blur-md"
+        class="inline-flex flex-wrap items-center justify-center gap-1 rounded-full border border-border-light bg-surface/90 p-1.5 shadow-card backdrop-blur-md"
         aria-label="Footer navigation"
-        data-reveal-delay="120"
       >
         {
           nav.map((link) => (
             <a
               href={link.href}
-              class="rounded-full px-4 py-2 text-sm font-medium text-muted transition-colors hover:bg-accent-purple/5 hover:text-heading"
+              class="rounded-full px-4 py-2 text-sm font-medium text-muted transition-colors hover:bg-background hover:text-heading"
             >
               {link.label}
             </a>
           ))
         }
-        <a
-          href={contact.bookingUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          data-magnetic
-          class="btn-glow relative rounded-full px-5 py-2 text-sm font-semibold text-dark"
-        >
+        <Button href={contact.bookingUrl} external class="!px-5 !py-2">
           {hero.cta}
-        </a>
+        </Button>
       </nav>
     </div>
 
@@ -137,7 +104,7 @@ const cardAccents = [
           href={social.instagram}
           target="_blank"
           rel="noopener noreferrer"
-          class="flex h-10 w-10 items-center justify-center rounded-full border border-border-light bg-white text-muted transition-all hover:border-accent-pink hover:text-accent-pink hover:shadow-glow-purple"
+          class="flex h-10 w-10 items-center justify-center rounded-full border border-border-light bg-surface text-muted transition-colors hover:border-accent-sage hover:text-heading"
           aria-label="Instagram @Hometownserenity"
         >
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
@@ -148,7 +115,7 @@ const cardAccents = [
           href={social.facebook}
           target="_blank"
           rel="noopener noreferrer"
-          class="flex h-10 w-10 items-center justify-center rounded-full border border-border-light bg-white text-muted transition-all hover:border-accent-cyan hover:text-accent-cyan hover:shadow-glow-purple"
+          class="flex h-10 w-10 items-center justify-center rounded-full border border-border-light bg-surface text-muted transition-colors hover:border-accent-sage hover:text-heading"
           aria-label="Facebook Ashley Romero CMH"
         >
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
@@ -157,7 +124,7 @@ const cardAccents = [
         </a>
         <a
           href={phoneHref}
-          class="flex h-10 w-10 items-center justify-center rounded-full border border-border-light bg-white text-muted transition-all hover:border-accent-lime hover:text-accent-lime hover:shadow-glow-lime"
+          class="flex h-10 w-10 items-center justify-center rounded-full border border-border-light bg-surface text-muted transition-colors hover:border-accent-sage hover:text-heading"
           aria-label={`Call ${contact.phone}`}
         >
           <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
@@ -167,10 +134,10 @@ const cardAccents = [
       </div>
 
       <div class="flex flex-wrap justify-center gap-4 text-sm text-muted-light">
-        <a href={contact.supportFormUrl} target="_blank" rel="noopener noreferrer" class="hover:text-accent-purple">
+        <a href={contact.supportFormUrl} target="_blank" rel="noopener noreferrer" class="hover:text-heading">
           Privacy Policy
         </a>
-        <a href={contact.supportFormUrl} target="_blank" rel="noopener noreferrer" class="hover:text-accent-purple">
+        <a href={contact.supportFormUrl} target="_blank" rel="noopener noreferrer" class="hover:text-heading">
           Terms &amp; Support
         </a>
       </div>

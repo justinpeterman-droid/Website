@@ -34,6 +34,15 @@ export interface AboutSection {
   quote: string;
   bio: string[];
   closing: string;
+  headshot: string;
+  headshotAlt: string;
+}
+
+export interface LinkPreview {
+  url: string;
+  image: string;
+  alt: string;
+  badge?: string;
 }
 
 export interface CtaBand {
@@ -51,6 +60,8 @@ export interface FooterLinkCard {
   label: string;
   href: string;
   external?: boolean;
+  description?: string;
+  preview?: LinkPreview;
 }
 
 export interface Footer {
@@ -116,11 +127,11 @@ export const site: Site = {
   },
 
   nav: [
-    { label: "Services", href: "#services" },
-    { label: "Library", href: "#library" },
-    { label: "Approach", href: "#approach" },
-    { label: "About", href: "#about" },
-    { label: "Contact", href: "#contact" },
+    { label: "Services", href: "/#services" },
+    { label: "Library", href: "/library" },
+    { label: "Approach", href: "/#approach" },
+    { label: "About", href: "/#about" },
+    { label: "Contact", href: "/#contact" },
   ],
 
   hero: {
@@ -195,6 +206,9 @@ export const site: Site = {
       "Her work is rooted in the belief that you are not a problem to be solved — you are a person to be known. Every session is an invitation to listen inward, honor your story, and step into a life that feels genuinely yours.",
     ],
     closing: "Allow the veil to lift. The light was always there.",
+    headshot:
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=900&q=85",
+    headshotAlt: "Ashley Romero, clinical hypnotherapist and founder of Hometown Serenity",
   },
 
   cta: {
@@ -237,7 +251,7 @@ export const site: Site = {
     {
       question: "Can I use the free library without booking?",
       answer:
-        "Yes. The free library offers complimentary guided practices, soundscapes, and reflections you can stream on the site or download to keep. No account or appointment is required — it is simply a resource for your journey.",
+        "Yes. Visit the Free Library page to stream complimentary guided practices, soundscapes, and reflections — or download them to keep. No account or appointment is required.",
     },
     {
       question: "Are sessions in person or online?",
@@ -265,25 +279,65 @@ export const site: Site = {
         label: "Book A Discovery Call",
         href: "https://calendar.app.google/J9AVNGfGc2SLAXTH9",
         external: true,
+        description: "Schedule a complimentary discovery call",
+        preview: {
+          url: "calendar.app.google",
+          image:
+            "https://images.unsplash.com/photo-1506784365847-bbad939e9335?auto=format&fit=crop&w=800&q=80",
+          alt: "Calendar booking preview",
+          badge: "Booking",
+        },
       },
       {
         label: "Free Library",
-        href: "#library",
+        href: "/library",
+        description: "Stream or download guided practices",
+        preview: {
+          url: "hometownserenity.com/library",
+          image:
+            "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=80",
+          alt: "Free wellness library preview",
+          badge: "Library",
+        },
       },
       {
         label: "Instagram",
         href: "https://instagram.com/Hometownserenity",
         external: true,
+        description: "@Hometownserenity",
+        preview: {
+          url: "instagram.com/Hometownserenity",
+          image:
+            "https://images.unsplash.com/photo-1611162617474-5b21e939e966?auto=format&fit=crop&w=800&q=80",
+          alt: "Hometown Serenity Instagram preview",
+          badge: "Social",
+        },
       },
       {
         label: "Facebook",
         href: "https://www.facebook.com/search/top?q=Ashley%20Romero%20CMH",
         external: true,
+        description: "Ashley Romero CMH",
+        preview: {
+          url: "facebook.com",
+          image:
+            "https://images.unsplash.com/photo-1611162616305-c69b3fa7a784?auto=format&fit=crop&w=800&q=80",
+          alt: "Ashley Romero Facebook preview",
+          badge: "Community",
+        },
       },
       {
         label: "Terms & Support",
         href: "https://docs.google.com/forms/d/e/1FAIpQLSct44Rk_hFcUnsIHfF0kRTqXKQsS_Y2WoHFMgIUqVjdHWpDhQ/viewform",
         external: true,
+        description: "Privacy, terms, and client support",
+        preview: {
+          url: "hometownserenity.com/support",
+          image:
+            "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80",
+          alt: "Support and policies preview",
+          badge: "Support",
+        },
       },
     ],
     education: [

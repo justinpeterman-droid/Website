@@ -1,0 +1,25 @@
+---
+interface Props {
+  url: string;
+  image: string;
+  alt: string;
+  label?: string;
+}
+
+const { url, image, alt, label } = Astro.props;
+---
+
+<div class="preview-window">
+  <div class="preview-window__chrome">
+    <div class="preview-window__dots" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="preview-window__url" title={url}>{url}</div>
+  </div>
+  <div class="preview-window__viewport">
+    <img src={image} alt={alt} class="preview-window__image" loading="lazy" width="640" height="400" />
+    {label && <span class="preview-window__badge">{label}</span>}
+  </div>
+</div>

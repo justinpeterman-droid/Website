@@ -4,50 +4,38 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#f7f7f8',
+        background: '#f8f7f5',
+        surface: '#ffffff',
         dark: {
-          DEFAULT: '#121218',
-          elevated: '#1b1b21',
+          DEFAULT: '#1a1917',
+          elevated: '#2a2826',
         },
         muted: {
-          DEFAULT: '#61646b',
-          light: '#94979e',
+          DEFAULT: '#5c5a57',
+          light: '#8a8783',
         },
-        heading: '#323239',
+        heading: '#2e2c29',
         accent: {
-          lime: '#83ca16',
-          purple: '#8624ff',
-          cyan: '#22d2ed',
-          pink: '#e973bb',
-          coral: '#f38370',
+          sage: '#6b8f71',
+          'sage-light': '#8aab8f',
+          lavender: '#7c6b9e',
+          teal: '#5a9a9e',
+          sand: '#c4a882',
+          rose: '#b8878a',
+          /* legacy aliases mapped to calm palette */
+          lime: '#6b8f71',
+          purple: '#7c6b9e',
+          cyan: '#5a9a9e',
+          pink: '#b8878a',
+          coral: '#c4a882',
         },
         border: {
-          DEFAULT: '#e0e2e6',
-          light: '#edeef1',
+          DEFAULT: '#e4e1dc',
+          light: '#efede9',
         },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-      },
-      animation: {
-        'gradient-shift': 'gradient-shift 4s ease infinite',
-        'blob-float': 'blob-float 14s ease-in-out infinite',
-        'pulse-glow': 'pulse-glow 2.5s ease-in-out infinite',
-      },
-      keyframes: {
-        'gradient-shift': {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
-        },
-        'blob-float': {
-          '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
-          '33%': { transform: 'translate(24px, -18px) scale(1.06)' },
-          '66%': { transform: 'translate(-16px, 22px) scale(0.94)' },
-        },
-        'pulse-glow': {
-          '0%, 100%': { opacity: '0.6', transform: 'scale(1)' },
-          '50%': { opacity: '1', transform: 'scale(1.05)' },
-        },
       },
     },
   },

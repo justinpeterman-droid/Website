@@ -1,0 +1,34 @@
+---
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'ghost';
+  external?: boolean;
+  class?: string;
+  id?: string;
+  download?: boolean | string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  external = false,
+  class: className = '',
+  id,
+  download,
+} = Astro.props;
+
+const base = 'btn';
+const variantClass =
+  variant === 'secondary' ? 'btn-secondary' : variant === 'ghost' ? 'btn-ghost' : 'btn-primary';
+---
+
+<a
+  href={href}
+  id={id}
+  download={download}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+  class:list={[base, variantClass, className]}
+>
+  <slot />
+</a>
