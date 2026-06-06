@@ -18,7 +18,8 @@ const { faqs } = site;
       {
         faqs.map((faq, index) => (
           <details
-            class={`group reveal reveal-delay-${Math.min((index % 4) + 1, 4)} rounded-2xl border border-border-light bg-white shadow-card`}
+            class="group reveal rounded-2xl border border-border-light bg-white shadow-card transition-shadow duration-300 hover:shadow-card-hover"
+            data-reveal-delay={index * 80}
           >
             <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-heading marker:content-none [&::-webkit-details-marker]:hidden">
               <span>{faq.question}</span>

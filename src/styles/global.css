@@ -14,6 +14,8 @@
   --color-border: #e0e2e6;
   --color-border-light: #edeef1;
   --font-sans: 'Inter', system-ui, sans-serif;
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.45, 0.64, 1);
 }
 
 @layer base {
@@ -48,8 +50,8 @@
 
   .shadow-card-hover {
     box-shadow:
-      0 4px 12px rgba(18, 18, 24, 0.08),
-      0 12px 32px rgba(18, 18, 24, 0.1);
+      0 8px 20px rgba(18, 18, 24, 0.1),
+      0 20px 48px rgba(18, 18, 24, 0.12);
   }
 
   .shadow-card-dark {
@@ -59,42 +61,54 @@
   }
 }
 
+/* Scroll entrance — wrapper only, never combined with hover transform */
 .reveal {
   opacity: 0;
-  transform: translateY(1.5rem);
+  transform: translateY(2.5rem);
   transition:
-    opacity 0.6s ease,
-    transform 0.6s ease;
+    opacity 0.8s var(--ease-spring),
+    transform 0.8s var(--ease-spring);
+  will-change: opacity, transform;
 }
 
-.reveal-visible {
+.reveal.reveal-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
 .reveal-fade {
   opacity: 0;
-  transition: opacity 0.6s ease;
+  transition: opacity 0.8s var(--ease-spring);
 }
 
 .reveal-fade.reveal-visible {
   opacity: 1;
 }
 
-.reveal-delay-1 {
-  transition-delay: 0.1s;
+/* Framer-style interactive cards — separate layer from reveal */
+.premium-card {
+  transition:
+    transform 0.45s var(--ease-bounce),
+    box-shadow 0.45s var(--ease-spring),
+    border-color 0.35s ease;
+  will-change: transform;
 }
 
-.reveal-delay-2 {
-  transition-delay: 0.2s;
+.premium-card:hover {
+  transform: translateY(-10px) scale(1.015);
+  box-shadow:
+    0 12px 28px rgba(18, 18, 24, 0.12),
+    0 28px 56px rgba(18, 18, 24, 0.1);
+  border-color: #d5d8de;
 }
 
-.reveal-delay-3 {
-  transition-delay: 0.3s;
+.premium-card .card-icon {
+  transition: transform 0.45s var(--ease-bounce), background-color 0.35s ease;
 }
 
-.reveal-delay-4 {
-  transition-delay: 0.4s;
+.premium-card:hover .card-icon {
+  transform: scale(1.08) rotate(-4deg);
+  background-color: #ffffff;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -103,5 +117,16 @@
     opacity: 1;
     transform: none;
     transition: none;
+    will-change: auto;
+  }
+
+  .premium-card,
+  .premium-card:hover {
+    transform: none;
+    transition: none;
+  }
+
+  .premium-card:hover .card-icon {
+    transform: none;
   }
 }
