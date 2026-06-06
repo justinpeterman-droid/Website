@@ -1,0 +1,90 @@
+---
+import { site } from '../content/site';
+
+const { brand, contact, social, footer } = site;
+const phoneHref = `tel:${contact.phone.replace(/[^\d+]/g, '')}`;
+---
+
+<footer id="contact" class="border-t border-border-light bg-white py-16">
+  <div class="mx-auto max-w-6xl px-5 md:px-8">
+    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+      <div>
+        <p class="text-lg font-semibold text-heading">{brand.name}</p>
+        <p class="mt-1 text-sm text-muted">
+          {brand.owner}, {brand.credentials.slice(0, 2).join(', ')}
+        </p>
+        <ul class="mt-4 space-y-2 text-sm text-muted">
+          <li>
+            <a href={phoneHref} class="transition-colors hover:text-heading">
+              {contact.phone}
+            </a>
+          </li>
+          <li>
+            <a href={`mailto:${contact.email}`} class="transition-colors hover:text-heading">
+              {contact.email}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.15em] text-muted-light">Connect</p>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li>
+            <a
+              href={social.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-muted transition-colors hover:text-heading"
+            >
+              Instagram @Hometownserenity
+            </a>
+          </li>
+          <li>
+            <a
+              href={social.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-muted transition-colors hover:text-heading"
+            >
+              Facebook: Ashley Romero CMH
+            </a>
+          </li>
+          <li>
+            <a
+              href={contact.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-muted transition-colors hover:text-heading"
+            >
+              Book A Discovery Call
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.15em] text-muted-light">Background</p>
+        <ul class="mt-4 space-y-2 text-sm text-muted">
+          {footer.education.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 flex flex-col gap-4 border-t border-border-light pt-8 text-sm text-muted-light md:flex-row md:items-center md:justify-between">
+      <p>{footer.copyright}</p>
+      <div class="flex flex-wrap gap-4">
+        <a href={contact.supportFormUrl} target="_blank" rel="noopener noreferrer" class="hover:text-heading">
+          Terms &amp; Support
+        </a>
+        <a href={contact.supportFormUrl} target="_blank" rel="noopener noreferrer" class="hover:text-heading">
+          Privacy Policy
+        </a>
+      </div>
+    </div>
+
+    <p class="mt-4 text-xs text-muted-light">
+      {footer.domains.join(' · ')}
+    </p>
+  </div>
+</footer>

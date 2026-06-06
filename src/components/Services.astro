@@ -1,0 +1,29 @@
+---
+import SectionLabel from './SectionLabel.astro';
+import ServiceCard from './ServiceCard.astro';
+import { site } from '../content/site';
+
+const { services } = site;
+---
+
+<section id="services" class="py-20 md:py-28">
+  <div class="mx-auto max-w-6xl px-5 md:px-8">
+    <div class="mb-12 max-w-2xl reveal">
+      <SectionLabel text="Integrative path" />
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-heading md:text-5xl">
+        An Integrative Path to Your Center
+      </h2>
+      <p class="mt-4 text-lg text-muted">
+        We use a blend of modern behavioral science and ancient somatic wisdom to help you navigate your way home to yourself.
+      </p>
+    </div>
+
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        services.map((service, index) => (
+          <ServiceCard {...service} index={index} />
+        ))
+      }
+    </div>
+  </div>
+</section>
