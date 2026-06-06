@@ -7,7 +7,7 @@ export interface MediaItem {
   type: MediaType;
   /** Path under /public, e.g. /media/videos/my-session.mp4 */
   src: string;
-  /** Optional poster/thumbnail under /public */
+  /** Poster/thumbnail — local path or remote URL until files are uploaded */
   thumbnail?: string;
   description?: string;
 }
@@ -39,7 +39,8 @@ export const archive: ArchiveSection = {
       tags: ['Audio', 'Breathwork'],
       type: 'audio',
       src: '/media/audio/grounding-breath.mp3',
-      thumbnail: '/media/thumbnails/grounding-breath.jpg',
+      thumbnail:
+        'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80',
       description: 'A short guided breath sequence to settle the nervous system.',
     },
     {
@@ -48,7 +49,8 @@ export const archive: ArchiveSection = {
       tags: ['Video', 'Hypnotherapy'],
       type: 'video',
       src: '/media/videos/identity-reflection.mp4',
-      thumbnail: '/media/thumbnails/identity-reflection.jpg',
+      thumbnail:
+        'https://images.unsplash.com/photo-1545389336-cf090694435e?auto=format&fit=crop&w=600&q=80',
       description: 'An introductory reflection on reconnecting with your authentic self.',
     },
     {
@@ -57,7 +59,8 @@ export const archive: ArchiveSection = {
       tags: ['Audio', 'Sound healing'],
       type: 'audio',
       src: '/media/audio/solfeggio-restoration.mp3',
-      thumbnail: '/media/thumbnails/solfeggio-restoration.jpg',
+      thumbnail:
+        'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80',
       description: 'Calming frequencies for deep restoration and inner quiet.',
     },
     {
@@ -66,7 +69,8 @@ export const archive: ArchiveSection = {
       tags: ['Video', 'Mindfulness'],
       type: 'video',
       src: '/media/videos/morning-intention.mp4',
-      thumbnail: '/media/thumbnails/morning-intention.jpg',
+      thumbnail:
+        'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80',
       description: 'Begin your day by turning up the volume on your soul\'s purpose.',
     },
   ],

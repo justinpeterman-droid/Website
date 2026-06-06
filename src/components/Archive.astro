@@ -6,7 +6,7 @@ import { archive } from '../content/media';
 const { label, headline, headlineMuted, intro, items } = archive;
 ---
 
-<section class="py-12 md:py-16">
+<section class="py-12 pt-28 md:py-16 md:pt-32">
   <div class="mx-auto max-w-6xl px-5 md:px-8">
     <div class="mb-12 max-w-3xl reveal" data-reveal-delay="0">
       <SectionLabel text={label} />
@@ -190,6 +190,12 @@ const { label, headline, headlineMuted, intro, items } = archive;
     modalDownload.setAttribute('href', src);
     modalDownload.setAttribute('download', '');
 
+    const unavailableMarkup = `
+      <div class="flex aspect-video w-full flex-col items-center justify-center gap-3 bg-background p-8 text-center">
+        <p class="text-sm font-semibold text-heading">Media file not uploaded yet</p>
+        <p class="max-w-sm text-sm text-muted">Add <code class="rounded bg-surface px-1.5 py-0.5 text-xs ring-1 ring-border-light">${src}</code> to enable playback.</p>
+      </div>`;
+
     if (type === 'audio') {
       modalPlayer.innerHTML = `
         <audio controls class="w-full p-4" src="${src}" ${thumbnail ? `poster="${thumbnail}"` : ''}>
@@ -207,7 +213,20 @@ const { label, headline, headlineMuted, intro, items } = archive;
     document.body.style.overflow = 'hidden';
 
     const media = modalPlayer.querySelector('video, audio');
-    media?.play?.().catch(() => {});
+    if (media) {
+      media.addEventListener('error', () => {
+        modalPlayer.innerHTML = unavailableMarkup;
+      });
+      const probe = fetch(src, { method: 'HEAD' })
+        .then((res) => {
+          if (!res.ok) modalPlayer.innerHTML = unavailableMarkup;
+        })
+        .catch(() => {
+          modalPlayer.innerHTML = unavailableMarkup;
+        });
+      void probe;
+      media.play?.().catch(() => {});
+    }
   };
 
   const closePlayer = () => {

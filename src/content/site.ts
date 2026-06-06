@@ -151,8 +151,8 @@ export const site: Site = {
       description:
         'Identifying and updating the "internal software" of your thoughts to better align with your true identity.',
       image:
-        "https://images.unsplash.com/photo-1499203539516-7fddd394601b?auto=format&fit=crop&w=900&q=80",
-      imageAlt: "Soft morning light over a calm journal and tea — mindful reflection",
+        "https://images.unsplash.com/photo-1545389336-cf090694435e?auto=format&fit=crop&w=900&q=80",
+      imageAlt: "Calm meditation practice for mindful thought and reflection",
     },
     {
       title: "Clinical & Ericksonian Hypnotherapy",
@@ -167,8 +167,8 @@ export const site: Site = {
       description:
         "Utilizing Solfeggio frequencies, mother nature, and sound therapy to create a harmonious environment for deep restoration.",
       image:
-        "https://images.unsplash.com/photo-1598486788231-c0261a84c8cc?auto=format&fit=crop&w=900&q=80",
-      imageAlt: "Tibetan singing bowl resting on a wooden surface in soft light",
+        "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=900&q=80",
+      imageAlt: "Spa wellness setting with soft light for sound frequency restoration",
     },
     {
       title: "Somatic Movement & Breathwork",
@@ -325,7 +325,7 @@ export const site: Site = {
         preview: {
           url: "instagram.com/Hometownserenity",
           image:
-            "https://images.unsplash.com/photo-1611162617474-5b21e939e966?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80",
           alt: "Hometown Serenity Instagram preview",
           badge: "Social",
         },
@@ -338,7 +338,7 @@ export const site: Site = {
         preview: {
           url: "facebook.com",
           image:
-            "https://images.unsplash.com/photo-1611162616305-c69b3fa7a784?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80",
           alt: "Ashley Romero Facebook preview",
           badge: "Community",
         },
