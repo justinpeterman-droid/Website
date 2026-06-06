@@ -11,11 +11,16 @@
   --color-heading: #323239;
   --color-accent-lime: #83ca16;
   --color-accent-purple: #8624ff;
+  --color-accent-cyan: #22d2ed;
+  --color-accent-pink: #e973bb;
+  --color-accent-coral: #f38370;
   --color-border: #e0e2e6;
   --color-border-light: #edeef1;
   --font-sans: 'Inter', system-ui, sans-serif;
   --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-bounce: cubic-bezier(0.34, 1.45, 0.64, 1);
+  --gradient-pop: linear-gradient(135deg, #8624ff 0%, #22d2ed 35%, #83ca16 70%, #e973bb 100%);
+  --gradient-warm: linear-gradient(135deg, #f38370 0%, #e973bb 40%, #8624ff 100%);
 }
 
 @layer base {
@@ -50,8 +55,8 @@
 
   .shadow-card-hover {
     box-shadow:
-      0 8px 20px rgba(18, 18, 24, 0.1),
-      0 20px 48px rgba(18, 18, 24, 0.12);
+      0 8px 20px rgba(134, 36, 255, 0.12),
+      0 20px 48px rgba(34, 210, 237, 0.1);
   }
 
   .shadow-card-dark {
@@ -59,9 +64,170 @@
       0 1px 2px rgba(0, 0, 0, 0.2),
       0 8px 24px rgba(0, 0, 0, 0.35);
   }
+
+  .shadow-glow-lime {
+    box-shadow: 0 0 40px rgba(131, 202, 22, 0.35), 0 0 80px rgba(131, 202, 22, 0.15);
+  }
+
+  .shadow-glow-purple {
+    box-shadow: 0 0 40px rgba(134, 36, 255, 0.3), 0 0 80px rgba(134, 36, 255, 0.12);
+  }
+
+  .text-gradient-pop {
+    background: var(--gradient-pop);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-gradient-warm {
+    background: var(--gradient-warm);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .border-gradient {
+    border: 1px solid transparent;
+    background:
+      linear-gradient(white, white) padding-box,
+      var(--gradient-pop) border-box;
+  }
 }
 
-/* Scroll entrance — wrapper only, never combined with hover transform */
+/* Animated mesh background blobs */
+.mesh-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.55;
+  animation: blob-float 14s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.mesh-blob-1 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(134, 36, 255, 0.55), transparent 70%);
+  top: -8%;
+  right: -5%;
+  animation-delay: 0s;
+}
+
+.mesh-blob-2 {
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(131, 202, 22, 0.45), transparent 70%);
+  bottom: 10%;
+  left: -8%;
+  animation-delay: -4s;
+}
+
+.mesh-blob-3 {
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(34, 210, 237, 0.4), transparent 70%);
+  top: 40%;
+  left: 35%;
+  animation-delay: -8s;
+}
+
+@keyframes blob-float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(24px, -18px) scale(1.06);
+  }
+  66% {
+    transform: translate(-16px, 22px) scale(0.94);
+  }
+}
+
+/* Glowing CTA button */
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #83ca16 0%, #a8e063 50%, #22d2ed 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+  transition: transform 0.35s var(--ease-bounce), box-shadow 0.35s ease;
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 32px rgba(131, 202, 22, 0.5), 0 8px 24px rgba(34, 210, 237, 0.25);
+}
+
+.btn-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 60%
+  );
+  transform: translateX(-120%);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes shimmer {
+  0%,
+  70%,
+  100% {
+    transform: translateX(-120%);
+  }
+  85% {
+    transform: translateX(120%);
+  }
+}
+
+/* CSS 3D floating orbs */
+.orbs-3d {
+  perspective: 800px;
+  transform-style: preserve-3d;
+}
+
+.orb-3d {
+  position: absolute;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  animation: orb-spin 18s linear infinite;
+}
+
+.orb-3d-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), transparent 40%),
+    var(--orb-color);
+  box-shadow:
+    inset -8px -12px 24px rgba(0, 0, 0, 0.15),
+    0 16px 40px var(--orb-glow);
+}
+
+@keyframes orb-spin {
+  0% {
+    transform: rotateX(15deg) rotateY(0deg) translateZ(0);
+  }
+  100% {
+    transform: rotateX(15deg) rotateY(360deg) translateZ(0);
+  }
+}
+
+/* Scroll entrance */
 .reveal {
   opacity: 0;
   transform: translateY(2.5rem);
@@ -76,6 +242,19 @@
   transform: translateY(0);
 }
 
+.reveal-3d {
+  opacity: 0;
+  transform: perspective(900px) rotateX(12deg) translateY(3rem) scale(0.96);
+  transition:
+    opacity 0.9s var(--ease-spring),
+    transform 0.9s var(--ease-bounce);
+}
+
+.reveal-3d.reveal-visible {
+  opacity: 1;
+  transform: perspective(900px) rotateX(0deg) translateY(0) scale(1);
+}
+
 .reveal-fade {
   opacity: 0;
   transition: opacity 0.8s var(--ease-spring);
@@ -85,7 +264,13 @@
   opacity: 1;
 }
 
-/* Framer-style interactive cards — separate layer from reveal */
+/* 3D tilt target — transition for smooth reset */
+[data-tilt] {
+  transition: transform 0.15s var(--ease-spring);
+  transform-style: preserve-3d;
+}
+
+/* Premium cards */
 .premium-card {
   transition:
     transform 0.45s var(--ease-bounce),
@@ -97,9 +282,9 @@
 .premium-card:hover {
   transform: translateY(-10px) scale(1.015);
   box-shadow:
-    0 12px 28px rgba(18, 18, 24, 0.12),
-    0 28px 56px rgba(18, 18, 24, 0.1);
-  border-color: #d5d8de;
+    0 12px 28px rgba(134, 36, 255, 0.15),
+    0 28px 56px rgba(34, 210, 237, 0.12);
+  border-color: rgba(134, 36, 255, 0.25);
 }
 
 .premium-card .card-icon {
@@ -107,8 +292,14 @@
 }
 
 .premium-card:hover .card-icon {
-  transform: scale(1.08) rotate(-4deg);
-  background-color: #ffffff;
+  transform: scale(1.12) rotate(-6deg);
+  background: linear-gradient(135deg, rgba(134, 36, 255, 0.08), rgba(131, 202, 22, 0.12));
+}
+
+.gradient-card-wrap {
+  background: var(--gradient-pop);
+  padding: 1px;
+  border-radius: 1.25rem;
 }
 
 .archive-row:focus-visible {
@@ -118,7 +309,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .reveal,
-  .reveal-fade {
+  .reveal-fade,
+  .reveal-3d {
     opacity: 1;
     transform: none;
     transition: none;
@@ -126,12 +318,16 @@
   }
 
   .premium-card,
-  .premium-card:hover {
+  .premium-card:hover,
+  [data-tilt] {
     transform: none;
     transition: none;
   }
 
-  .premium-card:hover .card-icon {
-    transform: none;
+  .mesh-blob,
+  .orb-3d,
+  .btn-glow,
+  .btn-glow::after {
+    animation: none;
   }
 }

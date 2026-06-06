@@ -15,9 +15,9 @@ const { brand, nav, contact, hero } = site;
   >
     <a
       href="#top"
-      class="text-sm font-semibold tracking-tight text-heading transition-colors hover:text-dark md:text-base"
+      class="text-sm font-semibold tracking-tight transition-colors hover:text-accent-purple md:text-base"
     >
-      {brand.name}
+      <span class="text-gradient-pop">{brand.name}</span>
     </a>
 
     <div class="hidden items-center gap-8 md:flex">
@@ -25,7 +25,7 @@ const { brand, nav, contact, hero } = site;
         nav.map((link) => (
           <a
             href={link.href}
-            class="text-sm font-medium text-muted transition-colors hover:text-heading"
+            class="text-sm font-medium text-muted transition-colors hover:text-accent-purple"
           >
             {link.label}
           </a>
@@ -37,7 +37,8 @@ const { brand, nav, contact, hero } = site;
       href={contact.bookingUrl}
       target="_blank"
       rel="noopener noreferrer"
-      class="inline-flex items-center justify-center rounded-full bg-dark px-4 py-2.5 text-sm font-semibold text-white shadow-card transition-all hover:-translate-y-0.5 hover:bg-dark-elevated hover:shadow-card-hover md:px-5"
+      data-magnetic
+      class="btn-glow relative inline-flex items-center justify-center rounded-full px-4 py-2.5 text-sm font-semibold text-dark md:px-5"
     >
       {hero.cta}
     </a>
@@ -45,13 +46,23 @@ const { brand, nav, contact, hero } = site;
 </header>
 
 <script>
-  const header = document.querySelector<HTMLElement>('[data-nav]');
+  const header = document.querySelector('[data-nav]');
   const onScroll = () => {
     if (!header) return;
     if (window.scrollY > 24) {
-      header.classList.add('border-border-light', 'bg-background/80', 'backdrop-blur-xl', 'shadow-card');
+      header.classList.add(
+        'border-accent-purple/10',
+        'bg-white/75',
+        'backdrop-blur-xl',
+        'shadow-glow-purple'
+      );
     } else {
-      header.classList.remove('border-border-light', 'bg-background/80', 'backdrop-blur-xl', 'shadow-card');
+      header.classList.remove(
+        'border-accent-purple/10',
+        'bg-white/75',
+        'backdrop-blur-xl',
+        'shadow-glow-purple'
+      );
     }
   };
   onScroll();

@@ -5,27 +5,43 @@ import { site } from '../content/site';
 const { about } = site;
 ---
 
-<section id="about" class="py-20 md:py-28">
-  <div class="mx-auto max-w-6xl px-5 md:px-8">
+<section id="about" class="relative overflow-hidden py-20 md:py-28">
+  <div class="mesh-blob mesh-blob-3 !opacity-30" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-6xl px-5 md:px-8">
     <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-      <div class="reveal">
+      <div class="reveal-3d" data-reveal-delay="0">
         <SectionLabel text={about.label} />
-        <h2 class="mt-3 text-3xl font-bold tracking-tight text-heading md:text-5xl">
-          {about.headline}
+        <h2 class="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
+          <span class="text-gradient-pop">{about.headline}</span>
         </h2>
         {
           about.bio.map((paragraph) => (
             <p class="mt-4 text-base leading-relaxed text-muted md:text-lg">{paragraph}</p>
           ))
         }
-        <p class="mt-8 text-lg font-medium text-heading">{about.closing}</p>
+        <p class="mt-8 text-lg font-medium">
+          <span class="text-gradient-warm">{about.closing}</span>
+        </p>
       </div>
 
-      <blockquote class="reveal premium-card rounded-3xl border border-border-light bg-white p-8 shadow-card md:p-10" data-reveal-delay="200">
-        <svg class="mb-4 h-8 w-8 text-accent-lime" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
-          <path d="M10 8c-3.3 0-6 2.7-6 6v8h8v-8H8c0-1.1.9-2 2-2V8zm14 0c-3.3 0-6 2.7-6 6v8h8v-8h-4c0-1.1.9-2 2-2V8z" />
-        </svg>
-        <p class="text-lg leading-relaxed text-heading md:text-xl">{about.quote}</p>
+      <blockquote
+        class="reveal-3d gradient-card-wrap shadow-glow-lime"
+        data-reveal-delay="200"
+        data-tilt
+        data-tilt-max="10"
+      >
+        <div class="premium-card rounded-3xl bg-white p-8 md:p-10">
+          <svg
+            class="mb-4 h-8 w-8 text-accent-purple"
+            viewBox="0 0 32 32"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d="M10 8c-3.3 0-6 2.7-6 6v8h8v-8H8c0-1.1.9-2 2-2V8zm14 0c-3.3 0-6 2.7-6 6v8h8v-8h-4c0-1.1.9-2 2-2V8z" />
+          </svg>
+          <p class="text-lg leading-relaxed text-heading md:text-xl">{about.quote}</p>
+        </div>
       </blockquote>
     </div>
   </div>

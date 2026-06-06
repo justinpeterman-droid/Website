@@ -1,4 +1,5 @@
 ---
+import HeroScene3D from './HeroScene3D.astro';
 import { site } from '../content/site';
 
 const { hero, contact, brand } = site;
@@ -7,37 +8,65 @@ const heroImageUrl =
   'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=2400&q=85';
 ---
 
-<section class="relative overflow-hidden pb-16 md:pb-24">
+<section class="relative min-h-[90vh] overflow-hidden pb-16 md:pb-24">
+  <HeroScene3D />
+
+  <div class="mesh-blob mesh-blob-1" aria-hidden="true"></div>
+  <div class="mesh-blob mesh-blob-2" aria-hidden="true"></div>
+  <div class="mesh-blob mesh-blob-3" aria-hidden="true"></div>
+
   <div
-    class="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(18,18,24,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(18,18,24,0.03)_1px,transparent_1px)] bg-[size:48px_48px]"
+    class="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(134,36,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(34,210,237,0.04)_1px,transparent_1px)] bg-[size:48px_48px]"
     aria-hidden="true"
   />
 
+  <!-- CSS 3D orbs -->
+  <div class="orbs-3d pointer-events-none absolute right-[8%] top-32 hidden h-40 w-40 lg:block" aria-hidden="true">
+    <div class="orb-3d h-16 w-16" style="--orb-color: linear-gradient(135deg, #8624ff, #22d2ed); --orb-glow: rgba(134,36,255,0.35); top: 0; right: 0;">
+      <div class="orb-3d-inner"></div>
+    </div>
+    <div class="orb-3d h-12 w-12" style="--orb-color: linear-gradient(135deg, #83ca16, #e973bb); --orb-glow: rgba(131,202,22,0.35); bottom: 0; left: 0; animation-delay: -6s;">
+      <div class="orb-3d-inner"></div>
+    </div>
+  </div>
+
   <div class="relative mx-auto max-w-6xl px-5 pt-28 md:px-8 md:pt-32">
-    <div class="reveal overflow-hidden rounded-[2rem] shadow-card-hover ring-1 ring-border-light md:rounded-[2.5rem]" data-reveal-delay="0">
-      <div class="relative aspect-[16/10] w-full sm:aspect-[2/1]">
-        <img
-          src={heroImageUrl}
-          alt="Sunlit forest path with warm golden light filtering through the trees"
-          class="h-full w-full object-cover"
-          loading="eager"
-          fetchpriority="high"
-          width="2400"
-          height="1200"
-        />
-        <div
-          class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-white/10"
-          aria-hidden="true"
-        />
+    <div
+      class="reveal-3d gradient-card-wrap overflow-hidden shadow-glow-purple"
+      data-reveal-delay="0"
+      data-tilt
+      data-tilt-max="6"
+    >
+      <div class="overflow-hidden rounded-[2rem] bg-white md:rounded-[2.45rem]">
+        <div class="relative aspect-[16/10] w-full overflow-hidden sm:aspect-[2/1]" data-parallax-hero>
+          <img
+            src={heroImageUrl}
+            alt="Sunlit forest path with warm golden light filtering through the trees"
+            class="h-full w-full object-cover transition-transform duration-700"
+            loading="eager"
+            fetchpriority="high"
+            width="2400"
+            height="1200"
+          />
+          <div
+            class="pointer-events-none absolute inset-0 bg-gradient-to-tr from-accent-purple/25 via-transparent to-accent-cyan/20"
+            aria-hidden="true"
+          />
+          <div
+            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-dark/20 via-transparent to-white/10"
+            aria-hidden="true"
+          />
+        </div>
       </div>
     </div>
 
     <div class="mt-10 max-w-4xl reveal md:mt-14" data-reveal-delay="180">
-      <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-muted-light">
+      <p class="mb-4 inline-flex items-center gap-2 rounded-full border border-accent-purple/20 bg-white/70 px-4 py-1.5 text-sm font-semibold uppercase tracking-[0.2em] text-accent-purple backdrop-blur-sm">
+        <span class="h-2 w-2 animate-pulse-glow rounded-full bg-accent-lime"></span>
         {hero.eyebrow}
       </p>
-      <h1 class="text-4xl font-bold leading-[1.08] tracking-tight text-heading md:text-6xl lg:text-7xl">
-        {hero.headline}
+      <h1 class="text-4xl font-bold leading-[1.08] tracking-tight md:text-6xl lg:text-7xl">
+        <span class="text-gradient-pop">{hero.headline}</span>
       </h1>
       <p class="mt-6 max-w-2xl text-lg leading-relaxed text-muted md:text-xl">
         {hero.subtext}
@@ -48,7 +77,8 @@ const heroImageUrl =
           href={contact.bookingUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center justify-center rounded-full bg-accent-lime px-7 py-3.5 text-sm font-semibold text-dark shadow-card transition-all hover:-translate-y-0.5 hover:shadow-card-hover"
+          data-magnetic
+          class="btn-glow relative inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-semibold text-dark"
         >
           {hero.cta}
         </a>

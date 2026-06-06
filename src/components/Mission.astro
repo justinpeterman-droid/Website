@@ -5,13 +5,16 @@ import { site } from '../content/site';
 const { mission } = site;
 ---
 
-<section id="approach" class="py-20 md:py-28">
-  <div class="mx-auto max-w-6xl px-5 md:px-8">
+<section id="approach" class="relative overflow-hidden py-20 md:py-28">
+  <div class="mesh-blob mesh-blob-2 !opacity-35" aria-hidden="true"></div>
+  <div class="mesh-blob mesh-blob-3 !opacity-25" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-6xl px-5 md:px-8">
     <div class="grid gap-12 lg:grid-cols-2 lg:items-start">
-      <div class="reveal">
+      <div class="reveal-3d" data-reveal-delay="0">
         <SectionLabel text={mission.label} />
-        <h2 class="mt-3 text-3xl font-bold tracking-tight text-heading md:text-5xl">
-          {mission.headline}
+        <h2 class="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
+          <span class="text-gradient-pop">{mission.headline}</span>
         </h2>
         {
           mission.body.map((paragraph) => (
@@ -20,15 +23,27 @@ const { mission } = site;
         }
       </div>
 
-      <div class="reveal premium-card rounded-3xl bg-dark p-8 text-white shadow-card-dark md:p-10" data-reveal-delay="200">
-        <h3 class="text-2xl font-semibold tracking-tight md:text-3xl">
-          {mission.secondaryHeadline}
-        </h3>
-        {
-          mission.secondaryBody.map((paragraph) => (
-            <p class="mt-4 text-sm leading-relaxed text-white/75 md:text-base">{paragraph}</p>
-          ))
-        }
+      <div
+        class="reveal-3d relative overflow-hidden rounded-3xl p-8 text-white shadow-glow-purple md:p-10"
+        data-reveal-delay="200"
+        data-tilt
+        data-tilt-max="8"
+      >
+        <div class="absolute inset-0 bg-dark" aria-hidden="true"></div>
+        <div
+          class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(134,36,255,0.5),transparent_50%),radial-gradient(circle_at_100%_100%,rgba(34,210,237,0.35),transparent_55%)]"
+          aria-hidden="true"
+        />
+        <div class="relative">
+          <h3 class="text-2xl font-semibold tracking-tight md:text-3xl">
+            <span class="text-gradient-warm">{mission.secondaryHeadline}</span>
+          </h3>
+          {
+            mission.secondaryBody.map((paragraph) => (
+              <p class="mt-4 text-sm leading-relaxed text-white/80 md:text-base">{paragraph}</p>
+            ))
+          }
+        </div>
       </div>
     </div>
   </div>

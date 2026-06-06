@@ -4,11 +4,17 @@ import { site } from '../content/site';
 const { reflection } = site;
 ---
 
-<section class="border-y border-border-light bg-white py-20 md:py-28">
-  <div class="mx-auto max-w-4xl px-5 text-center md:px-8">
-    <div class="reveal">
-      <h2 class="text-3xl font-bold tracking-tight text-heading md:text-5xl">
-        {reflection.headline}
+<section class="relative overflow-hidden border-y border-border-light bg-white py-20 md:py-28">
+  <div
+    class="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(134,36,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(34,210,237,0.04)_1px,transparent_1px)] bg-[size:48px_48px]"
+    aria-hidden="true"
+  />
+  <div class="mesh-blob mesh-blob-1 !opacity-20" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-4xl px-5 text-center md:px-8">
+    <div class="reveal-3d" data-reveal-delay="0">
+      <h2 class="text-3xl font-bold tracking-tight md:text-5xl">
+        <span class="text-gradient-pop">{reflection.headline}</span>
       </h2>
       {
         reflection.body.map((paragraph, index) => (
@@ -19,6 +25,21 @@ const { reflection } = site;
           </p>
         ))
       }
+    </div>
+
+    <div class="orbs-3d pointer-events-none relative mx-auto mt-10 h-16 w-48" aria-hidden="true">
+      <div
+        class="orb-3d h-10 w-10"
+        style="--orb-color: linear-gradient(135deg, #e973bb, #8624ff); --orb-glow: rgba(233,115,187,0.3); top: 0; left: 20%;"
+      >
+        <div class="orb-3d-inner"></div>
+      </div>
+      <div
+        class="orb-3d h-8 w-8"
+        style="--orb-color: linear-gradient(135deg, #83ca16, #22d2ed); --orb-glow: rgba(131,202,22,0.3); bottom: 0; right: 20%; animation-delay: -9s;"
+      >
+        <div class="orb-3d-inner"></div>
+      </div>
     </div>
   </div>
 </section>

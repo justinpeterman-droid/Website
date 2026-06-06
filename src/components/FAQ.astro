@@ -5,17 +5,18 @@ import { site } from '../content/site';
 const { faqs } = site;
 ---
 
-<section id="faq" class="relative py-20 md:py-28" aria-labelledby="faq-heading">
+<section id="faq" class="relative overflow-hidden py-20 md:py-28" aria-labelledby="faq-heading">
   <div
-    class="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(18,18,24,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(18,18,24,0.03)_1px,transparent_1px)] bg-[size:48px_48px]"
+    class="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(134,36,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(34,210,237,0.04)_1px,transparent_1px)] bg-[size:48px_48px]"
     aria-hidden="true"
   />
+  <div class="mesh-blob mesh-blob-1 !opacity-25" aria-hidden="true"></div>
 
   <div class="relative mx-auto max-w-3xl px-5 md:px-8">
-    <div class="mb-10 reveal" data-reveal-delay="0">
+    <div class="mb-10 reveal-3d" data-reveal-delay="0">
       <SectionLabel text="FAQs" />
-      <h2 id="faq-heading" class="mt-3 text-3xl font-bold tracking-tight text-heading md:text-5xl">
-        Frequently Asked
+      <h2 id="faq-heading" class="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
+        <span class="text-gradient-pop">Frequently Asked</span>
         <span class="text-muted-light"> Questions</span>
       </h2>
     </div>
@@ -24,13 +25,13 @@ const { faqs } = site;
       {
         faqs.map((faq, index) => (
           <details
-            class="group reveal rounded-2xl bg-white/80 px-5 py-1 shadow-card ring-1 ring-border-light backdrop-blur-sm transition-shadow duration-300 hover:shadow-card-hover md:px-6"
+            class="group reveal-3d rounded-2xl bg-white/90 px-5 py-1 shadow-card ring-1 ring-border-light backdrop-blur-sm transition-all duration-300 hover:shadow-glow-purple hover:ring-accent-purple/25 md:px-6"
             data-reveal-delay={index * 70}
           >
             <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-left font-medium text-heading marker:content-none [&::-webkit-details-marker]:hidden">
               <span class="text-sm md:text-base">{faq.question}</span>
               <span
-                class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-background text-muted transition-transform duration-300 group-open:rotate-180"
+                class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-accent-purple/10 to-accent-cyan/10 text-accent-purple transition-transform duration-300 group-open:rotate-180 group-open:from-accent-lime/15 group-open:to-accent-cyan/15 group-open:text-accent-lime"
                 aria-hidden="true"
               >
                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
