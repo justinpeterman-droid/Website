@@ -196,44 +196,54 @@ export const site: Site = {
 
   faqs: [
     {
-      question: "What is clinical hypnotherapy, and is it like what I see on stage?",
+      question: "What is Hometown Serenity?",
       answer:
-        "Clinical hypnotherapy is a collaborative, therapeutic process — not entertainment. You remain aware and in control while guided into a relaxed, focused state that allows your subconscious mind to engage more openly. It is gentle, consent-based, and tailored to your goals.",
+        "Hometown Serenity is a wellness practice led by Ashley Romero, CMH, CAHA, focused on identity reconstruction and integrative mind-body work. It is for anyone who feels buried beneath their titles — parent, partner, professional — and wants to reconnect with who they are beneath the noise.",
     },
     {
-      question: "What can I expect during a discovery call?",
+      question: "How is this different from traditional therapy?",
       answer:
-        "A discovery call is a complimentary conversation where we explore what you are experiencing, what you hope to shift, and whether Hometown Serenity feels like the right fit. There is no pressure — just space to ask questions and determine your next step.",
+        "Traditional therapy often begins with what is wrong. Here, we start with what is already right within you. The goal is not to fix you — it is to help you peel back the layers and rediscover the authentic person who has been there all along.",
     },
     {
-      question: "Do I need a formal diagnosis to work with you?",
+      question: "Is hypnotherapy safe? Will I lose control?",
       answer:
-        "No. Hometown Serenity is a wellness practice focused on identity, nervous system regulation, and personal growth — not medical treatment. If you are experiencing a mental health crisis or need clinical care, we will discuss appropriate referrals.",
+        "You remain fully aware and in control throughout. Clinical hypnotherapy is nothing like stage hypnosis — it is a gentle, consent-based process that guides you into a relaxed, focused state so your subconscious mind can engage more openly. You can speak, move, or pause at any time.",
     },
     {
-      question: "How does the integrative approach work?",
+      question: "What happens during a discovery call?",
       answer:
-        "Rather than relying on a single modality, sessions may weave together hypnotherapy, NLP, somatic movement, breathwork, sound healing, and holistic nutrition guidance — depending on what your body and mind respond to best. The approach is personalized, not prescriptive.",
+        "A discovery call is a complimentary, no-pressure conversation. We talk about what you are experiencing, what you hope to shift, and whether this approach feels like the right fit. From there, we decide together whether to move forward — there is no obligation.",
+    },
+    {
+      question: "What is identity reconstruction?",
+      answer:
+        "Identity reconstruction is the process of rediscovering who you are beyond the roles you play. When life asks you to be everything for everyone, your own soul's purpose can become a quiet hum in the background. This work helps you turn that volume back up.",
+    },
+    {
+      question: "Which modalities are used in sessions?",
+      answer:
+        "Sessions may draw on clinical and Ericksonian hypnotherapy, neurolinguistic programming (NLP), somatic movement and breathwork, sound frequency healing, and holistic nutrition guidance — woven together based on what your body and mind respond to best.",
+    },
+    {
+      question: "Can I use the free library without booking?",
+      answer:
+        "Yes. The free library offers complimentary guided practices, soundscapes, and reflections you can stream on the site or download to keep. No account or appointment is required — it is simply a resource for your journey.",
+    },
+    {
+      question: "Are sessions in person or online?",
+      answer:
+        "Both may be available depending on your location and preference. Virtual sessions work well for hypnotherapy and somatic work — you simply need a private, comfortable space. Details are confirmed when you book your discovery call.",
     },
     {
       question: "How many sessions will I need?",
       answer:
-        "Every journey is different. Some clients experience meaningful shifts in a handful of sessions; others prefer ongoing support as they reconstruct identity and build new rhythms. We will discuss a pace that honors your goals, your budget, and your nervous system.",
+        "There is no one-size-fits-all answer. Some people feel a meaningful shift in a few sessions; others prefer ongoing support as they rebuild rhythm and identity. We will talk openly about pace, goals, and what feels sustainable for you.",
     },
     {
-      question: "Are sessions offered in person or virtually?",
+      question: "How do I get started?",
       answer:
-        "Both options may be available depending on your location and preference. Virtual sessions are conducted in a private, comfortable setting where you can relax fully. Details are confirmed when you book your discovery call.",
-    },
-    {
-      question: "What should I do to prepare for a session?",
-      answer:
-        "Come as you are. Wear comfortable clothing, hydrate, and find a quiet space if meeting virtually. There is no special preparation required — openness and curiosity are the most helpful things you can bring.",
-    },
-    {
-      question: "How do I book or get support between sessions?",
-      answer:
-        "Use the booking link to schedule a discovery call or session. For questions between appointments, reach out via email or the support form — Ashley aims to respond within one to two business days.",
+        "Book a free discovery call using the button at the top of this page, or reach out at ashleyromero@hometownserenity.com. You can also explore the free library anytime — listen, download, and see if the approach resonates before committing to a session.",
     },
   ],
 
