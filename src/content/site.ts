@@ -13,6 +13,8 @@ export interface Hero {
 export interface Service {
   title: string;
   description: string;
+  image: string;
+  imageAlt: string;
 }
 
 export interface MissionSection {
@@ -34,6 +36,15 @@ export interface AboutSection {
   quote: string;
   bio: string[];
   closing: string;
+  headshot: string;
+  headshotAlt: string;
+}
+
+export interface LinkPreview {
+  url: string;
+  image: string;
+  alt: string;
+  badge?: string;
 }
 
 export interface CtaBand {
@@ -47,7 +58,18 @@ export interface Faq {
   answer: string;
 }
 
+export interface FooterLinkCard {
+  label: string;
+  href: string;
+  external?: boolean;
+  description?: string;
+  preview?: LinkPreview;
+}
+
 export interface Footer {
+  status: string;
+  tagline: string;
+  linkCards: FooterLinkCard[];
   education: string[];
   domains: string[];
   copyright: string;
@@ -107,10 +129,11 @@ export const site: Site = {
   },
 
   nav: [
-    { label: "Services", href: "#services" },
-    { label: "Approach", href: "#approach" },
-    { label: "About", href: "#about" },
-    { label: "Contact", href: "#contact" },
+    { label: "Services", href: "/#services" },
+    { label: "Library", href: "/library" },
+    { label: "Approach", href: "/#approach" },
+    { label: "About", href: "/#about" },
+    { label: "Contact", href: "/#contact" },
   ],
 
   hero: {
@@ -127,26 +150,41 @@ export const site: Site = {
       title: "Neurolinguistic Programming (NLP)",
       description:
         'Identifying and updating the "internal software" of your thoughts to better align with your true identity.',
+      image:
+        "https://images.unsplash.com/photo-1499203539516-7fddd394601b?auto=format&fit=crop&w=900&q=80",
+      imageAlt: "Soft morning light over a calm journal and tea — mindful reflection",
     },
     {
       title: "Clinical & Ericksonian Hypnotherapy",
       description:
         "Gently shifting your focus inward to access the wisdom of your subconscious mind.",
+      image:
+        "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=900&q=80",
+      imageAlt: "Person in peaceful meditation with eyes closed in warm natural light",
     },
     {
       title: "Sound Frequency Healing",
       description:
         "Utilizing Solfeggio frequencies, mother nature, and sound therapy to create a harmonious environment for deep restoration.",
+      image:
+        "https://images.unsplash.com/photo-1598486788231-c0261a84c8cc?auto=format&fit=crop&w=900&q=80",
+      imageAlt: "Tibetan singing bowl resting on a wooden surface in soft light",
     },
     {
       title: "Somatic Movement & Breathwork",
       description:
         'Using yoga, mindfulness, and nervous system regulation to move out of "survival mode" and back into your body.',
+      image:
+        "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=900&q=80",
+      imageAlt: "Yoga practice at sunrise overlooking misty mountains",
     },
     {
       title: "Holistic Nutrition & Wellness",
       description:
         "Supporting your soul's purpose by nourishing the physical vessel that carries it.",
+      image:
+        "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=80",
+      imageAlt: "Fresh herbs and wholesome ingredients arranged on a wooden table",
     },
   ],
 
@@ -185,6 +223,9 @@ export const site: Site = {
       "Her work is rooted in the belief that you are not a problem to be solved — you are a person to be known. Every session is an invitation to listen inward, honor your story, and step into a life that feels genuinely yours.",
     ],
     closing: "Allow the veil to lift. The light was always there.",
+    headshot:
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=900&q=85",
+    headshotAlt: "Ashley Romero, clinical hypnotherapist and founder of Hometown Serenity",
   },
 
   cta: {
@@ -195,48 +236,127 @@ export const site: Site = {
 
   faqs: [
     {
-      question: "What is clinical hypnotherapy, and is it like what I see on stage?",
+      question: "What is Hometown Serenity?",
       answer:
-        "Clinical hypnotherapy is a collaborative, therapeutic process — not entertainment. You remain aware and in control while guided into a relaxed, focused state that allows your subconscious mind to engage more openly. It is gentle, consent-based, and tailored to your goals.",
+        "Hometown Serenity is a wellness practice led by Ashley Romero, CMH, CAHA, focused on identity reconstruction and integrative mind-body work. It is for anyone who feels buried beneath their titles — parent, partner, professional — and wants to reconnect with who they are beneath the noise.",
     },
     {
-      question: "What can I expect during a discovery call?",
+      question: "How is this different from traditional therapy?",
       answer:
-        "A discovery call is a complimentary conversation where we explore what you are experiencing, what you hope to shift, and whether Hometown Serenity feels like the right fit. There is no pressure — just space to ask questions and determine your next step.",
+        "Traditional therapy often begins with what is wrong. Here, we start with what is already right within you. The goal is not to fix you — it is to help you peel back the layers and rediscover the authentic person who has been there all along.",
     },
     {
-      question: "Do I need a formal diagnosis to work with you?",
+      question: "Is hypnotherapy safe? Will I lose control?",
       answer:
-        "No. Hometown Serenity is a wellness practice focused on identity, nervous system regulation, and personal growth — not medical treatment. If you are experiencing a mental health crisis or need clinical care, we will discuss appropriate referrals.",
+        "You remain fully aware and in control throughout. Clinical hypnotherapy is nothing like stage hypnosis — it is a gentle, consent-based process that guides you into a relaxed, focused state so your subconscious mind can engage more openly. You can speak, move, or pause at any time.",
     },
     {
-      question: "How does the integrative approach work?",
+      question: "What happens during a discovery call?",
       answer:
-        "Rather than relying on a single modality, sessions may weave together hypnotherapy, NLP, somatic movement, breathwork, sound healing, and holistic nutrition guidance — depending on what your body and mind respond to best. The approach is personalized, not prescriptive.",
+        "A discovery call is a complimentary, no-pressure conversation. We talk about what you are experiencing, what you hope to shift, and whether this approach feels like the right fit. From there, we decide together whether to move forward — there is no obligation.",
+    },
+    {
+      question: "What is identity reconstruction?",
+      answer:
+        "Identity reconstruction is the process of rediscovering who you are beyond the roles you play. When life asks you to be everything for everyone, your own soul's purpose can become a quiet hum in the background. This work helps you turn that volume back up.",
+    },
+    {
+      question: "Which modalities are used in sessions?",
+      answer:
+        "Sessions may draw on clinical and Ericksonian hypnotherapy, neurolinguistic programming (NLP), somatic movement and breathwork, sound frequency healing, and holistic nutrition guidance — woven together based on what your body and mind respond to best.",
+    },
+    {
+      question: "Can I use the free library without booking?",
+      answer:
+        "Yes. Visit the Free Library page to stream complimentary guided practices, soundscapes, and reflections — or download them to keep. No account or appointment is required.",
+    },
+    {
+      question: "Are sessions in person or online?",
+      answer:
+        "Both may be available depending on your location and preference. Virtual sessions work well for hypnotherapy and somatic work — you simply need a private, comfortable space. Details are confirmed when you book your discovery call.",
     },
     {
       question: "How many sessions will I need?",
       answer:
-        "Every journey is different. Some clients experience meaningful shifts in a handful of sessions; others prefer ongoing support as they reconstruct identity and build new rhythms. We will discuss a pace that honors your goals, your budget, and your nervous system.",
+        "There is no one-size-fits-all answer. Some people feel a meaningful shift in a few sessions; others prefer ongoing support as they rebuild rhythm and identity. We will talk openly about pace, goals, and what feels sustainable for you.",
     },
     {
-      question: "Are sessions offered in person or virtually?",
+      question: "How do I get started?",
       answer:
-        "Both options may be available depending on your location and preference. Virtual sessions are conducted in a private, comfortable setting where you can relax fully. Details are confirmed when you book your discovery call.",
-    },
-    {
-      question: "What should I do to prepare for a session?",
-      answer:
-        "Come as you are. Wear comfortable clothing, hydrate, and find a quiet space if meeting virtually. There is no special preparation required — openness and curiosity are the most helpful things you can bring.",
-    },
-    {
-      question: "How do I book or get support between sessions?",
-      answer:
-        "Use the booking link to schedule a discovery call or session. For questions between appointments, reach out via email or the support form — Ashley aims to respond within one to two business days.",
+        "Book a free discovery call using the button at the top of this page, or reach out at ashleyromero@hometownserenity.com. You can also explore the free library anytime — listen, download, and see if the approach resonates before committing to a session.",
     },
   ],
 
   footer: {
+    status: "Available for discovery calls",
+    tagline:
+      "A wellness practice helping you move past fixing into finding — welcome to Hometown Serenity.",
+    linkCards: [
+      {
+        label: "Book A Discovery Call",
+        href: "https://calendar.app.google/J9AVNGfGc2SLAXTH9",
+        external: true,
+        description: "Schedule a complimentary discovery call",
+        preview: {
+          url: "calendar.app.google",
+          image:
+            "https://images.unsplash.com/photo-1506784365847-bbad939e9335?auto=format&fit=crop&w=800&q=80",
+          alt: "Calendar booking preview",
+          badge: "Booking",
+        },
+      },
+      {
+        label: "Free Library",
+        href: "/library",
+        description: "Stream or download guided practices",
+        preview: {
+          url: "hometownserenity.com/library",
+          image:
+            "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=80",
+          alt: "Free wellness library preview",
+          badge: "Library",
+        },
+      },
+      {
+        label: "Instagram",
+        href: "https://instagram.com/Hometownserenity",
+        external: true,
+        description: "@Hometownserenity",
+        preview: {
+          url: "instagram.com/Hometownserenity",
+          image:
+            "https://images.unsplash.com/photo-1611162617474-5b21e939e966?auto=format&fit=crop&w=800&q=80",
+          alt: "Hometown Serenity Instagram preview",
+          badge: "Social",
+        },
+      },
+      {
+        label: "Facebook",
+        href: "https://www.facebook.com/search/top?q=Ashley%20Romero%20CMH",
+        external: true,
+        description: "Ashley Romero CMH",
+        preview: {
+          url: "facebook.com",
+          image:
+            "https://images.unsplash.com/photo-1611162616305-c69b3fa7a784?auto=format&fit=crop&w=800&q=80",
+          alt: "Ashley Romero Facebook preview",
+          badge: "Community",
+        },
+      },
+      {
+        label: "Terms & Support",
+        href: "https://docs.google.com/forms/d/e/1FAIpQLSct44Rk_hFcUnsIHfF0kRTqXKQsS_Y2WoHFMgIUqVjdHWpDhQ/viewform",
+        external: true,
+        description: "Privacy, terms, and client support",
+        preview: {
+          url: "hometownserenity.com/support",
+          image:
+            "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80",
+          alt: "Support and policies preview",
+          badge: "Support",
+        },
+      },
+    ],
     education: [
       "Graduating AOS Mind Body Psychology, June 2027",
       "ISSA Yoga 200",
@@ -248,6 +368,6 @@ export const site: Site = {
       "HometownSerenity.store",
       "HometownSerenity.shop",
     ],
-    copyright: "Hometown Serenity | Ashley Romero, CMH, CAHA",
+    copyright: "© 2026 Hometown Serenity · Ashley Romero, CMH, CAHA",
   },
 };

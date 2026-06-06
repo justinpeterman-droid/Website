@@ -1,0 +1,257 @@
+---
+import SectionLabel from './SectionLabel.astro';
+import Button from './Button.astro';
+import { archive } from '../content/media';
+
+const { label, headline, headlineMuted, intro, items } = archive;
+---
+
+<section class="py-12 md:py-16">
+  <div class="mx-auto max-w-6xl px-5 md:px-8">
+    <div class="mb-12 max-w-3xl reveal" data-reveal-delay="0">
+      <SectionLabel text={label} />
+      <h1 class="mt-3 text-3xl font-bold tracking-tight text-heading md:text-5xl">
+        {headline}
+        <span class="text-muted-light"> {headlineMuted}</span>
+      </h1>
+      <p class="mt-4 text-lg text-muted">{intro}</p>
+    </div>
+
+    <div class="reveal divide-y divide-border-light border-y border-border-light" data-reveal-delay="100" data-archive-list>
+      {
+        items.map((item, index) => (
+          <article
+            class="archive-row group relative flex cursor-pointer items-center gap-4 py-5 transition-colors duration-300 hover:bg-background/60 md:py-6"
+            data-archive-item
+            data-id={item.id}
+            data-type={item.type}
+            data-src={item.src}
+            data-title={item.title}
+            data-description={item.description ?? ''}
+            data-thumbnail={item.thumbnail ?? ''}
+            tabindex="0"
+            role="button"
+            aria-label={`Play ${item.title}`}
+          >
+            <div class="min-w-0 flex-1">
+              <h3 class="text-base font-semibold text-heading transition-colors group-hover:text-accent-sage md:text-lg">
+                {item.title}
+              </h3>
+              {item.description && (
+                <p class="mt-1 hidden text-sm text-muted md:block">{item.description}</p>
+              )}
+            </div>
+
+            <div class="hidden items-center gap-6 sm:flex">
+              <div class="flex flex-wrap justify-end gap-2">
+                {item.tags.map((tag) => (
+                  <span class="rounded-full bg-background px-2.5 py-0.5 text-xs text-muted-light ring-1 ring-border-light">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <span class="w-8 text-right text-sm tabular-nums text-muted-light">{index + 1}</span>
+            </div>
+
+            <div class="flex items-center gap-2 sm:hidden">
+              <span class="text-xs text-muted-light">{item.tags[0]}</span>
+              <span class="text-xs tabular-nums text-muted-light">{index + 1}</span>
+            </div>
+
+            <div class="ml-2 flex shrink-0 items-center gap-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:opacity-100">
+              <button
+                type="button"
+                class="archive-play inline-flex h-9 items-center gap-1.5 rounded-full bg-dark px-3.5 text-xs font-semibold text-white transition-colors hover:bg-dark-elevated"
+                data-play-trigger
+              >
+                <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+                Play
+              </button>
+              <a
+                href={item.src}
+                download
+                class="inline-flex h-9 items-center gap-1.5 rounded-full border border-border bg-surface px-3.5 text-xs font-semibold text-heading transition-colors hover:border-accent-sage"
+                data-download-link
+              >
+                <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4" />
+                </svg>
+                Save
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+
+  <div
+    id="archive-preview"
+    class="pointer-events-none fixed z-40 hidden w-56 overflow-hidden rounded-xl border border-border-light bg-surface shadow-card-hover md:w-64"
+    aria-hidden="true"
+  >
+    <div id="archive-preview-media" class="aspect-video w-full bg-background"></div>
+    <p id="archive-preview-title" class="px-4 py-3 text-sm font-semibold text-heading"></p>
+  </div>
+
+  <div
+    id="archive-modal"
+    class="fixed inset-0 z-[60] hidden items-center justify-center bg-dark/60 p-4 backdrop-blur-sm"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="archive-modal-title"
+  >
+    <div class="relative w-full max-w-3xl rounded-2xl border border-border-light bg-surface p-5 shadow-card-hover md:p-6">
+      <button
+        type="button"
+        id="archive-modal-close"
+        class="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-background text-heading transition-colors hover:bg-border-light"
+        aria-label="Close player"
+      >
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <h3 id="archive-modal-title" class="pr-12 text-lg font-semibold text-heading"></h3>
+      <p id="archive-modal-desc" class="mt-1 text-sm text-muted"></p>
+
+      <div id="archive-modal-player" class="mt-4 overflow-hidden rounded-xl bg-dark"></div>
+
+      <div class="mt-4">
+        <Button id="archive-modal-download" href="#" variant="secondary" class="archive-download-btn">
+          Download
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const preview = document.getElementById('archive-preview');
+  const previewMedia = document.getElementById('archive-preview-media');
+  const previewTitle = document.getElementById('archive-preview-title');
+  const modal = document.getElementById('archive-modal');
+  const modalTitle = document.getElementById('archive-modal-title');
+  const modalDesc = document.getElementById('archive-modal-desc');
+  const modalPlayer = document.getElementById('archive-modal-player');
+  const modalDownload = document.getElementById('archive-modal-download');
+  const modalClose = document.getElementById('archive-modal-close');
+
+  const rows = document.querySelectorAll('[data-archive-item]');
+
+  const setPreviewContent = (row) => {
+    if (!preview || !previewMedia || !previewTitle) return;
+
+    const title = row.dataset.title ?? '';
+    const thumbnail = row.dataset.thumbnail ?? '';
+    const type = row.dataset.type ?? 'video';
+
+    previewTitle.textContent = title;
+
+    if (thumbnail) {
+      previewMedia.innerHTML = `<img src="${thumbnail}" alt="" class="h-full w-full object-cover" />`;
+    } else {
+      previewMedia.innerHTML = `
+        <div class="flex h-full w-full items-center justify-center bg-background text-muted-light">
+          <span class="text-xs font-semibold uppercase tracking-widest">${type}</span>
+        </div>`;
+    }
+  };
+
+  const showPreview = (row, event) => {
+    if (!preview || window.matchMedia('(max-width: 767px)').matches) return;
+    setPreviewContent(row);
+    preview.classList.remove('hidden');
+
+    const x = Math.min(event.clientX + 24, window.innerWidth - 280);
+    const y = Math.min(event.clientY - 40, window.innerHeight - 220);
+    preview.style.left = `${Math.max(16, x)}px`;
+    preview.style.top = `${Math.max(16, y)}px`;
+  };
+
+  const hidePreview = () => {
+    preview?.classList.add('hidden');
+  };
+
+  const openPlayer = (row) => {
+    if (!modal || !modalPlayer || !modalTitle || !modalDesc || !modalDownload) return;
+
+    const src = row.dataset.src ?? '';
+    const title = row.dataset.title ?? '';
+    const description = row.dataset.description ?? '';
+    const type = row.dataset.type ?? 'video';
+    const thumbnail = row.dataset.thumbnail ?? '';
+
+    modalTitle.textContent = title;
+    modalDesc.textContent = description;
+    modalDownload.setAttribute('href', src);
+    modalDownload.setAttribute('download', '');
+
+    if (type === 'audio') {
+      modalPlayer.innerHTML = `
+        <audio controls class="w-full p-4" src="${src}" ${thumbnail ? `poster="${thumbnail}"` : ''}>
+          Your browser does not support audio playback.
+        </audio>`;
+    } else {
+      modalPlayer.innerHTML = `
+        <video controls playsinline class="aspect-video w-full" src="${src}" ${thumbnail ? `poster="${thumbnail}"` : ''}>
+          Your browser does not support video playback.
+        </video>`;
+    }
+
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+
+    const media = modalPlayer.querySelector('video, audio');
+    media?.play?.().catch(() => {});
+  };
+
+  const closePlayer = () => {
+    if (!modal || !modalPlayer) return;
+    const media = modalPlayer.querySelector('video, audio');
+    media?.pause?.();
+    modalPlayer.innerHTML = '';
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = '';
+  };
+
+  rows.forEach((row) => {
+    row.addEventListener('mouseenter', (e) => showPreview(row, e));
+    row.addEventListener('mousemove', (e) => showPreview(row, e));
+    row.addEventListener('mouseleave', hidePreview);
+
+    row.querySelector('[data-download-link]')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+
+    row.addEventListener('click', (e) => {
+      if (e.target.closest('[data-download-link]')) return;
+      openPlayer(row);
+    });
+
+    row.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openPlayer(row);
+      }
+    });
+
+    row.querySelector('[data-play-trigger]')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openPlayer(row);
+    });
+  });
+
+  modalClose?.addEventListener('click', closePlayer);
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) closePlayer();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closePlayer();
+  });
+</script>

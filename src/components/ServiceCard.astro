@@ -5,26 +5,34 @@ interface Props extends Service {
   index: number;
 }
 
-const { title, description, index } = Astro.props;
+const { title, description, image, imageAlt, index } = Astro.props;
 
-const icons = [
-  'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z',
-  'M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z',
-  'M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3',
-  'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
-  'M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z',
-];
+const staggerDelay = index * 100;
 ---
 
-<article
-  class={`group reveal reveal-delay-${Math.min(index + 1, 4)} rounded-2xl border border-border-light bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover md:p-8`}
->
-  <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-background text-heading ring-1 ring-border">
-    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-      <path stroke-linecap="round" stroke-linejoin="round" d={icons[index % icons.length]} />
-    </svg>
-  </div>
-  <p class="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-muted-light">Service</p>
-  <h3 class="text-xl font-semibold tracking-tight text-heading">{title}</h3>
-  <p class="mt-3 text-sm leading-relaxed text-muted">{description}</p>
-</article>
+<div class="reveal h-full" data-reveal-delay={staggerDelay}>
+  <article class="premium-card group flex h-full flex-col overflow-hidden rounded-2xl border border-border-light bg-surface shadow-card">
+    <div class="relative aspect-[4/3] overflow-hidden bg-background">
+      <img
+        src={image}
+        alt={imageAlt}
+        class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+        loading="lazy"
+        width="900"
+        height="675"
+      />
+      <div
+        class="pointer-events-none absolute inset-0 bg-gradient-to-t from-dark/25 via-transparent to-transparent"
+        aria-hidden="true"
+      />
+    </div>
+
+    <div class="flex flex-1 flex-col p-6 md:p-7">
+      <p class="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-accent-sage">Service</p>
+      <h3 class="text-lg font-semibold leading-snug tracking-tight text-heading md:text-xl">
+        {title}
+      </h3>
+      <p class="mt-3 flex-1 text-sm leading-relaxed text-muted">{description}</p>
+    </div>
+  </article>
+</div>

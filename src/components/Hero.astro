@@ -1,39 +1,71 @@
 ---
+import Button from './Button.astro';
+import PreviewWindow from './PreviewWindow.astro';
 import { site } from '../content/site';
 
-const { hero, contact, brand } = site;
+const { hero, contact, brand, social } = site;
+
+const heroImageUrl =
+  'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=2400&q=85';
 ---
 
-<section class="relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28">
-  <div
-    class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(131,202,22,0.12),transparent_50%),radial-gradient(ellipse_at_bottom_left,rgba(134,36,255,0.08),transparent_55%)]"
-    aria-hidden="true"
-  />
-
-  <div class="relative mx-auto max-w-6xl px-5 md:px-8">
-    <div class="max-w-4xl reveal">
-      <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-muted-light">
-        {hero.eyebrow}
-      </p>
-      <h1 class="text-4xl font-bold leading-[1.08] tracking-tight text-heading md:text-6xl lg:text-7xl">
-        {hero.headline}
-      </h1>
-      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-muted md:text-xl">
-        {hero.subtext}
-      </p>
-
-      <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-        <a
-          href={contact.bookingUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center rounded-full bg-accent-lime px-7 py-3.5 text-sm font-semibold text-dark shadow-card transition-all hover:-translate-y-0.5 hover:shadow-card-hover"
-        >
-          {hero.cta}
-        </a>
-        <p class="text-sm text-muted-light">
-          {brand.owner} · {brand.credentials.join(' · ')}
+<section class="relative overflow-hidden pb-20 pt-28 md:pb-28 md:pt-32">
+  <div class="mx-auto max-w-6xl px-5 md:px-8">
+    <div class="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+      <div class="reveal max-w-2xl" data-reveal-delay="0">
+        <p class="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-surface/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-accent-sage backdrop-blur-sm">
+          <span class="h-1.5 w-1.5 rounded-full bg-accent-sage"></span>
+          {hero.eyebrow}
         </p>
+        <h1 class="text-4xl font-bold leading-[1.1] tracking-tight text-heading md:text-5xl lg:text-6xl">
+          {hero.headline}
+        </h1>
+        <p class="mt-6 text-lg leading-relaxed text-muted md:text-xl">
+          {hero.subtext}
+        </p>
+
+        <div class="mt-10 flex flex-col gap-5 sm:flex-row sm:items-center">
+          <Button href={contact.bookingUrl} external>
+            {hero.cta}
+          </Button>
+          <div class="flex items-center gap-4">
+            <a
+              href={social.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sm font-medium text-muted transition-colors hover:text-heading"
+            >
+              @Hometownserenity
+            </a>
+            <span class="text-border" aria-hidden="true">·</span>
+            <p class="text-sm text-muted-light">
+              {brand.owner}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal" data-reveal-delay="120">
+        <div class="overflow-hidden rounded-2xl border border-border-light bg-surface shadow-card" data-parallax-hero>
+          <img
+            src={heroImageUrl}
+            alt="Sunlit forest path with warm golden light filtering through the trees"
+            class="aspect-[4/3] w-full object-cover"
+            loading="eager"
+            fetchpriority="high"
+            width="2400"
+            height="1800"
+          />
+        </div>
+
+        <div class="mt-5" data-tilt data-tilt-max="3">
+          <PreviewWindow
+            url="hometownserenity.com"
+            image={heroImageUrl}
+            alt="Live preview of the Hometown Serenity wellness experience"
+            label="Live preview"
+          />
+        </div>
       </div>
     </div>
   </div>

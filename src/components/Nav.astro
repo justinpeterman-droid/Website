@@ -1,4 +1,5 @@
 ---
+import Button from './Button.astro';
 import { site } from '../content/site';
 
 const { brand, nav, contact, hero } = site;
@@ -14,8 +15,8 @@ const { brand, nav, contact, hero } = site;
     aria-label="Main navigation"
   >
     <a
-      href="#top"
-      class="text-sm font-semibold tracking-tight text-heading transition-colors hover:text-dark md:text-base"
+      href="/"
+      class="text-sm font-semibold tracking-tight text-heading transition-colors hover:text-accent-sage md:text-base"
     >
       {brand.name}
     </a>
@@ -33,25 +34,20 @@ const { brand, nav, contact, hero } = site;
       }
     </div>
 
-    <a
-      href={contact.bookingUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="inline-flex items-center justify-center rounded-full bg-dark px-4 py-2.5 text-sm font-semibold text-white shadow-card transition-all hover:-translate-y-0.5 hover:bg-dark-elevated hover:shadow-card-hover md:px-5"
-    >
+    <Button href={contact.bookingUrl} external class="!px-4 !py-2.5 md:!px-5">
       {hero.cta}
-    </a>
+    </Button>
   </nav>
 </header>
 
 <script>
-  const header = document.querySelector<HTMLElement>('[data-nav]');
+  const header = document.querySelector('[data-nav]');
   const onScroll = () => {
     if (!header) return;
     if (window.scrollY > 24) {
-      header.classList.add('border-border-light', 'bg-background/80', 'backdrop-blur-xl', 'shadow-card');
+      header.classList.add('border-border-light', 'bg-surface/85', 'backdrop-blur-xl', 'shadow-card');
     } else {
-      header.classList.remove('border-border-light', 'bg-background/80', 'backdrop-blur-xl', 'shadow-card');
+      header.classList.remove('border-border-light', 'bg-surface/85', 'backdrop-blur-xl', 'shadow-card');
     }
   };
   onScroll();

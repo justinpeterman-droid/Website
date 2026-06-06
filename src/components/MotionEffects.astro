@@ -1,0 +1,83 @@
+<script>
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const lerp = (start, end, amount) => start + (end - start) * amount;
+
+  if (!prefersReducedMotion) {
+    document.querySelectorAll('[data-tilt]').forEach((el) => {
+      const element = el;
+      const max = Number(element.dataset.tiltMax ?? 4);
+      let targetX = 0;
+      let targetY = 0;
+      let currentX = 0;
+      let currentY = 0;
+      let rafId = 0;
+      let active = false;
+
+      const animate = () => {
+        currentX = lerp(currentX, targetX, 0.08);
+        currentY = lerp(currentY, targetY, 0.08);
+
+        element.style.transform = `perspective(1200px) rotateX(${currentY}deg) rotateY(${currentX}deg)`;
+
+        const settled =
+          Math.abs(currentX - targetX) < 0.02 && Math.abs(currentY - targetY) < 0.02;
+
+        if (!settled || active) {
+          rafId = requestAnimationFrame(animate);
+        }
+      };
+
+      const startLoop = () => {
+        if (!rafId) rafId = requestAnimationFrame(animate);
+      };
+
+      element.addEventListener('pointerenter', () => {
+        active = true;
+        startLoop();
+      });
+
+      element.addEventListener('pointermove', (e) => {
+        const rect = element.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        targetX = x * max;
+        targetY = -y * max;
+        active = true;
+        startLoop();
+      });
+
+      element.addEventListener('pointerleave', () => {
+        targetX = 0;
+        targetY = 0;
+        active = true;
+        startLoop();
+        setTimeout(() => {
+          active = false;
+        }, 400);
+      });
+    });
+
+    const heroParallax = document.querySelector('[data-parallax-hero]');
+    if (heroParallax) {
+      let parallaxY = 0;
+      let targetParallaxY = 0;
+
+      const updateParallax = () => {
+        parallaxY = lerp(parallaxY, targetParallaxY, 0.06);
+        heroParallax.style.transform = `translate3d(0, ${parallaxY}px, 0)`;
+        requestAnimationFrame(updateParallax);
+      };
+
+      window.addEventListener(
+        'scroll',
+        () => {
+          targetParallaxY = window.scrollY * 0.06;
+        },
+        { passive: true }
+      );
+
+      requestAnimationFrame(updateParallax);
+    }
+  }
+</script>
