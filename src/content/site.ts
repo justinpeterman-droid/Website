@@ -161,7 +161,7 @@ export const site: Site = {
       description:
         'Identifying and updating the "internal software" of your thoughts to better align with your true identity.',
       image:
-        "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=900&q=80",
       imageAlt: "Soft morning light over a calm journal and tea — mindful reflection",
     },
     {
