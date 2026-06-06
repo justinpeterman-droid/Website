@@ -47,7 +47,16 @@ export interface Faq {
   answer: string;
 }
 
+export interface FooterLinkCard {
+  label: string;
+  href: string;
+  external?: boolean;
+}
+
 export interface Footer {
+  status: string;
+  tagline: string;
+  linkCards: FooterLinkCard[];
   education: string[];
   domains: string[];
   copyright: string;
@@ -248,6 +257,35 @@ export const site: Site = {
   ],
 
   footer: {
+    status: "Available for discovery calls",
+    tagline:
+      "A wellness practice helping you move past fixing into finding — welcome to Hometown Serenity.",
+    linkCards: [
+      {
+        label: "Book A Discovery Call",
+        href: "https://calendar.app.google/J9AVNGfGc2SLAXTH9",
+        external: true,
+      },
+      {
+        label: "Free Library",
+        href: "#library",
+      },
+      {
+        label: "Instagram",
+        href: "https://instagram.com/Hometownserenity",
+        external: true,
+      },
+      {
+        label: "Facebook",
+        href: "https://www.facebook.com/search/top?q=Ashley%20Romero%20CMH",
+        external: true,
+      },
+      {
+        label: "Terms & Support",
+        href: "https://docs.google.com/forms/d/e/1FAIpQLSct44Rk_hFcUnsIHfF0kRTqXKQsS_Y2WoHFMgIUqVjdHWpDhQ/viewform",
+        external: true,
+      },
+    ],
     education: [
       "Graduating AOS Mind Body Psychology, June 2027",
       "ISSA Yoga 200",
@@ -259,6 +297,6 @@ export const site: Site = {
       "HometownSerenity.store",
       "HometownSerenity.shop",
     ],
-    copyright: "Hometown Serenity | Ashley Romero, CMH, CAHA",
+    copyright: "© 2026 Hometown Serenity · Ashley Romero, CMH, CAHA",
   },
 };
