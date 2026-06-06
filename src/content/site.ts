@@ -150,7 +150,7 @@ export const site: Site = {
       'Beyond the roles of parent, spouse, or professional lies a vibrant identity waiting to be rediscovered. At Hometown Serenity, we move past the weight of "fixing" to find the extraordinary rhythm already within you.',
     cta: "Book A Discovery Call",
     image: {
-      src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=2400&q=85",
+      src: "/images/hero-forest.jpg",
       alt: "Sunlit forest path with warm golden light filtering through the trees",
     },
   },
@@ -161,7 +161,7 @@ export const site: Site = {
       description:
         'Identifying and updating the "internal software" of your thoughts to better align with your true identity.',
       image:
-        "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=900&q=80",
+        "/images/service-nlp.jpg",
       imageAlt: "Soft morning light over a calm journal and tea — mindful reflection",
     },
     {
@@ -169,7 +169,7 @@ export const site: Site = {
       description:
         "Gently shifting your focus inward to access the wisdom of your subconscious mind.",
       image:
-        "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=900&q=80",
+        "/images/service-hypnotherapy.jpg",
       imageAlt: "Person in peaceful meditation with eyes closed in warm natural light",
     },
     {
@@ -177,7 +177,7 @@ export const site: Site = {
       description:
         "Utilizing Solfeggio frequencies, mother nature, and sound therapy to create a harmonious environment for deep restoration.",
       image:
-        "https://images.unsplash.com/photo-1528715471579-d1bcf0ba5e83?auto=format&fit=crop&w=900&q=80",
+        "/images/service-sound.jpg",
       imageAlt: "Tibetan singing bowl resting on a wooden surface in soft light",
     },
     {
@@ -185,7 +185,7 @@ export const site: Site = {
       description:
         'Using yoga, mindfulness, and nervous system regulation to move out of "survival mode" and back into your body.',
       image:
-        "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=900&q=80",
+        "/images/service-yoga.jpg",
       imageAlt: "Yoga practice at sunrise overlooking misty mountains",
     },
     {
@@ -193,7 +193,7 @@ export const site: Site = {
       description:
         "Supporting your soul's purpose by nourishing the physical vessel that carries it.",
       image:
-        "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=80",
+        "/images/service-nutrition.jpg",
       imageAlt: "Fresh herbs and wholesome ingredients arranged on a wooden table",
     },
   ],
@@ -234,7 +234,7 @@ export const site: Site = {
     ],
     closing: "Allow the veil to lift. The light was always there.",
     headshot:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=900&q=85",
+      "/images/about-headshot.jpg",
     headshotAlt: "Ashley Romero, clinical hypnotherapist and founder of Hometown Serenity",
   },
 
@@ -310,7 +310,7 @@ export const site: Site = {
         preview: {
           url: "calendar.app.google",
           image:
-            "https://images.unsplash.com/photo-1506784365847-bbad939e9335?auto=format&fit=crop&w=800&q=80",
+            "/images/preview-booking.jpg",
           alt: "Calendar booking preview",
           badge: "Booking",
         },
@@ -322,7 +322,7 @@ export const site: Site = {
         preview: {
           url: "hometownserenity.com/library",
           image:
-            "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=80",
+            "/images/preview-library.jpg",
           alt: "Free wellness library preview",
           badge: "Library",
         },
@@ -335,7 +335,7 @@ export const site: Site = {
         preview: {
           url: "instagram.com/Hometownserenity",
           image:
-            "https://images.unsplash.com/photo-1611162617474-5b21e939e966?auto=format&fit=crop&w=800&q=80",
+            "/images/preview-instagram.jpg",
           alt: "Hometown Serenity Instagram preview",
           badge: "Social",
         },
@@ -348,7 +348,7 @@ export const site: Site = {
         preview: {
           url: "facebook.com",
           image:
-            "https://images.unsplash.com/photo-1611162616305-c69b3fa7a784?auto=format&fit=crop&w=800&q=80",
+            "/images/preview-facebook.jpg",
           alt: "Ashley Romero Facebook preview",
           badge: "Community",
         },
@@ -361,7 +361,7 @@ export const site: Site = {
         preview: {
           url: "hometownserenity.com/support",
           image:
-            "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80",
+            "/images/preview-support.jpg",
           alt: "Support and policies preview",
           badge: "Support",
         },
