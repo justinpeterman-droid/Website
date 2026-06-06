@@ -3,11 +3,17 @@ export interface NavLink {
   href: string;
 }
 
+export interface HeroImage {
+  src: string;
+  alt: string;
+}
+
 export interface Hero {
   eyebrow: string;
   headline: string;
   subtext: string;
   cta: string;
+  image: HeroImage;
 }
 
 export interface Service {
@@ -143,6 +149,10 @@ export const site: Site = {
     subtext:
       'Beyond the roles of parent, spouse, or professional lies a vibrant identity waiting to be rediscovered. At Hometown Serenity, we move past the weight of "fixing" to find the extraordinary rhythm already within you.',
     cta: "Book A Discovery Call",
+    image: {
+      src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=2400&q=85",
+      alt: "Sunlit forest path with warm golden light filtering through the trees",
+    },
   },
 
   services: [
