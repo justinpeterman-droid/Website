@@ -51,3 +51,9 @@ Static output is written to `dist/`.
 
 - [Astro 5](https://astro.build)
 - [Tailwind CSS 3](https://tailwindcss.com)
+
+## Agents
+
+- **[AGENTS.md](./AGENTS.md)** — instructions for Cursor Cloud Agents (setup, commands, conventions, handoff notes).
+- **[`.cursor/agents/website-builder.md`](./.cursor/agents/website-builder.md)** — site development (`@website-builder`).
+- **[`.cursor/agents/launch-coordinator.md`](./.cursor/agents/launch-coordinator.md)** — Vercel deploy, domain, and go-live (`@launch-coordinator`).
