@@ -161,7 +161,7 @@ export const site: Site = {
       description:
         'Identifying and updating the "internal software" of your thoughts to better align with your true identity.',
       image:
-        "https://images.unsplash.com/photo-1499203539516-7fddd394601b?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=80",
       imageAlt: "Soft morning light over a calm journal and tea — mindful reflection",
     },
     {
@@ -177,7 +177,7 @@ export const site: Site = {
       description:
         "Utilizing Solfeggio frequencies, mother nature, and sound therapy to create a harmonious environment for deep restoration.",
       image:
-        "https://images.unsplash.com/photo-1598486788231-c0261a84c8cc?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1528715471579-d1bcf0ba5e83?auto=format&fit=crop&w=900&q=80",
       imageAlt: "Tibetan singing bowl resting on a wooden surface in soft light",
     },
     {
