@@ -10,17 +10,19 @@ import { site } from '../content/site';
 interface Props {
   title?: string;
   description?: string;
+  transparentNav?: boolean;
 }
 
 const {
   title = `${site.brand.name} | ${site.brand.owner}`,
   description = site.hero.subtext,
+  transparentNav = false,
 } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
   <AnimatedBackground />
-  <Nav />
+  <Nav transparentAtTop={transparentNav} />
   <main>
     <slot />
   </main>
