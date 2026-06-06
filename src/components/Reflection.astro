@@ -1,0 +1,24 @@
+---
+import { site } from '../content/site';
+
+const { reflection } = site;
+---
+
+<section class="border-y border-border-light bg-white py-20 md:py-28">
+  <div class="mx-auto max-w-4xl px-5 text-center md:px-8">
+    <div class="reveal">
+      <h2 class="text-3xl font-bold tracking-tight text-heading md:text-5xl">
+        {reflection.headline}
+      </h2>
+      {
+        reflection.body.map((paragraph, index) => (
+          <p
+            class={`text-base leading-relaxed text-muted md:text-lg ${index === 0 ? 'mt-6' : 'mt-4'}`}
+          >
+            {paragraph}
+          </p>
+        ))
+      }
+    </div>
+  </div>
+</section>

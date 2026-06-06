@@ -1,0 +1,59 @@
+---
+import { site } from '../content/site';
+
+const { brand, nav, contact, hero } = site;
+---
+
+<header
+  id="top"
+  class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-all duration-300"
+  data-nav
+>
+  <nav
+    class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 md:px-8"
+    aria-label="Main navigation"
+  >
+    <a
+      href="#top"
+      class="text-sm font-semibold tracking-tight text-heading transition-colors hover:text-dark md:text-base"
+    >
+      {brand.name}
+    </a>
+
+    <div class="hidden items-center gap-8 md:flex">
+      {
+        nav.map((link) => (
+          <a
+            href={link.href}
+            class="text-sm font-medium text-muted transition-colors hover:text-heading"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
+
+    <a
+      href={contact.bookingUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center justify-center rounded-full bg-dark px-4 py-2.5 text-sm font-semibold text-white shadow-card transition-all hover:-translate-y-0.5 hover:bg-dark-elevated hover:shadow-card-hover md:px-5"
+    >
+      {hero.cta}
+    </a>
+  </nav>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-nav]');
+  const onScroll = () => {
+    if (!header) return;
+    if (window.scrollY > 24) {
+      header.classList.add('border-border-light', 'bg-background/80', 'backdrop-blur-xl', 'shadow-card');
+    } else {
+      header.classList.remove('border-border-light', 'bg-background/80', 'backdrop-blur-xl', 'shadow-card');
+    }
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>
