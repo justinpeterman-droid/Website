@@ -2,16 +2,37 @@
 import { site } from '../content/site';
 
 const { hero, contact, brand } = site;
+
+const heroImageUrl =
+  'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=2400&q=85';
 ---
 
-<section class="relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28">
+<section class="relative overflow-hidden pb-16 md:pb-24">
   <div
-    class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(131,202,22,0.12),transparent_50%),radial-gradient(ellipse_at_bottom_left,rgba(134,36,255,0.08),transparent_55%)]"
+    class="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(18,18,24,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(18,18,24,0.03)_1px,transparent_1px)] bg-[size:48px_48px]"
     aria-hidden="true"
   />
 
-  <div class="relative mx-auto max-w-6xl px-5 md:px-8">
-    <div class="max-w-4xl reveal">
+  <div class="relative mx-auto max-w-6xl px-5 pt-28 md:px-8 md:pt-32">
+    <div class="reveal overflow-hidden rounded-[2rem] shadow-card-hover ring-1 ring-border-light md:rounded-[2.5rem]">
+      <div class="relative aspect-[16/10] w-full sm:aspect-[2/1]">
+        <img
+          src={heroImageUrl}
+          alt="Sunlit forest path with warm golden light filtering through the trees"
+          class="h-full w-full object-cover"
+          loading="eager"
+          fetchpriority="high"
+          width="2400"
+          height="1200"
+        />
+        <div
+          class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-white/10"
+          aria-hidden="true"
+        />
+      </div>
+    </div>
+
+    <div class="mt-10 max-w-4xl reveal reveal-delay-1 md:mt-14">
       <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-muted-light">
         {hero.eyebrow}
       </p>
