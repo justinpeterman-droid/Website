@@ -1,0 +1,32 @@
+---
+import { site } from '../content/site';
+
+const { cta, contact } = site;
+---
+
+<section class="py-20 md:py-28">
+  <div class="mx-auto max-w-6xl px-5 md:px-8">
+    <div
+      class="reveal relative overflow-hidden rounded-3xl bg-dark px-8 py-14 text-center text-white shadow-card-dark md:px-16 md:py-20"
+    >
+      <div
+        class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(131,202,22,0.25),transparent_45%),radial-gradient(circle_at_bottom_left,rgba(134,36,255,0.2),transparent_50%)]"
+        aria-hidden="true"
+      />
+      <div class="relative">
+        <h2 class="text-3xl font-bold tracking-tight md:text-5xl">{cta.headline}</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/75 md:text-lg">
+          {cta.body}
+        </p>
+        <a
+          href={contact.bookingUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-8 inline-flex items-center justify-center rounded-full bg-accent-lime px-8 py-3.5 text-sm font-semibold text-dark transition-all hover:-translate-y-0.5 hover:shadow-card-hover"
+        >
+          {cta.cta}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

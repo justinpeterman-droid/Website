@@ -4,9 +4,9 @@ Instructions for Cursor Cloud Agents working in this repository.
 
 ## Overview
 
-This repo hosts **Ashley Website** — the marketing site for [Hometown Serenity](https://hometownserenity.com) (Ashley Romero, CMH, CAHA). The stack is **Astro 5** + **Tailwind CSS v4**, deployed on **Netlify**.
+This repo hosts the **Hometown Serenity** marketing site for Ashley Romero, CMH, CAHA. It is a static **Astro 5** single-page site styled with **Tailwind CSS 3** and the Framer Brandora design language (Inter font, card shadows, scroll-reveal).
 
-A complete reference implementation lives in the sibling repo `justinpeterman-droid/Project` if this checkout is still sparse. Prefer the files in this repo once the site has been migrated.
+**Deploy target:** Vercel (not Netlify). See `README.md` for domain setup.
 
 ## Quick start
 
@@ -14,8 +14,10 @@ A complete reference implementation lives in the sibling repo `justinpeterman-dr
 npm install
 npm run dev      # http://localhost:4321
 npm run build    # output → dist/
-npm run preview  # serve production build locally
+npm run preview
 ```
+
+Requires **Node >= 22.12.0**.
 
 ## Key commands
 
@@ -25,30 +27,43 @@ npm run preview  # serve production build locally
 | Dev server | `npm run dev` |
 | Production build | `npm run build` |
 | Preview build | `npm run preview` |
-| Optimize images | `npm run optimize-images` (if script exists) |
+
+Build verified: `npm run build` completes successfully.
 
 ## Project layout
 
 ```
 src/
-  data/site.ts          # Copy, links, services, FAQs — single source of truth
-  layouts/Layout.astro  # HTML shell, SEO, OG, JSON-LD
-  components/           # One component per landing section
-  pages/
-    index.astro         # Full landing page
-    privacy.astro       # Privacy policy
-public/                 # Images, favicon, robots.txt
-docs/                   # Specs and link inventory (when present)
-netlify.toml            # Build + headers
+  content/site.ts       # All copy, links, contact — single source of truth
+  layouts/BaseLayout.astro
+  components/           # Nav, Hero, Credentials, Services, Showcase, Mission,
+                        # Reflection, About, CTABand, FAQ, Footer, ScrollReveal
+  pages/index.astro     # Wires all sections
+  styles/global.css     # Framer design tokens + scroll-reveal utilities
+public/                 # favicon.ico, favicon.png, favicon.svg
 ```
 
 ## Content changes
 
-1. Edit `src/data/site.ts` for visible site content.
-2. Keep `docs/links.json` in sync when that file exists.
-3. Run `npm run build` to verify.
+1. Edit **`src/content/site.ts`** for any visible copy, links, or CTAs.
+2. Do not hardcode URLs in components — import from `site.ts`.
+3. Run `npm run build` after substantive changes.
 
-Booking links are interim Google Calendar URLs until Calendly is provided — update `src/data/site.ts` only.
+## Section map
+
+| Section | Component | Anchor |
+|---------|-----------|--------|
+| Nav | `Nav.astro` | — |
+| Hero | `Hero.astro` | — |
+| Credentials | `Credentials.astro` | — |
+| Services | `Services.astro` | `#services` |
+| Showcase | `Showcase.astro` | — |
+| Approach | `Mission.astro` | `#approach` |
+| Reflection | `Reflection.astro` | — |
+| About | `About.astro` | `#about` |
+| Booking CTA | `CTABand.astro` | `#contact` |
+| FAQ | `FAQ.astro` | — |
+| Footer | `Footer.astro` | — |
 
 ## Target branch
 
@@ -56,15 +71,21 @@ Booking links are interim Google Calendar URLs until Calendly is provided — up
 
 ## Conventions
 
-- Static Astro output; no server-side runtime required.
-- Tailwind v4 via `@tailwindcss/vite` — use existing utility patterns in components.
-- Wellness/compliance copy must stay accurate; see `Compliance.astro` and spec disclaimers.
-- Do not commit real secrets. Use `.env.example` placeholders when env vars are needed.
-- Match the calm, high-end visual tone: cream overlays, serif headings, generous whitespace.
+- Static Astro output only — no backend or database.
+- Tailwind 3 via `@astrojs/tailwind` — extend tokens in `tailwind.config.mjs` and `global.css`.
+- Preserve the calm, premium wellness voice; do not add clinical/medical claims beyond existing copy.
+- Booking uses Google Calendar (`site.contact.bookingUrl`) until Calendly is provided.
+- Do not commit secrets.
 
-## DNS note
+## Handoff — remaining work
 
-`hometownserenity.com` may not be pointed at Netlify yet. Deploy and review on the Netlify preview URL first.
+Another agent built the initial site (PR #1). Useful next tasks:
+
+1. **Deploy to Vercel** and attach `hometownserenity.com` (DNS steps in README).
+2. **Add OG/social image** — `BaseLayout.astro` has placeholder meta tags; add `og:image` and a `public/og-image` asset.
+3. **Replace stock imagery** — `Showcase.astro` uses an Unsplash placeholder; swap for Ashley's Canva photos from `justinpeterman-droid/Project` if needed.
+4. **Retire Framer placeholder** — stop linking `snow-rules-755686.framer.app` once Vercel is live.
+5. **Privacy page** — not yet implemented; add `src/pages/privacy.astro` before launch if required.
 
 ## Custom agents
 

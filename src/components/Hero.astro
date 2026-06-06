@@ -1,0 +1,40 @@
+---
+import { site } from '../content/site';
+
+const { hero, contact, brand } = site;
+---
+
+<section class="relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28">
+  <div
+    class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(131,202,22,0.12),transparent_50%),radial-gradient(ellipse_at_bottom_left,rgba(134,36,255,0.08),transparent_55%)]"
+    aria-hidden="true"
+  />
+
+  <div class="relative mx-auto max-w-6xl px-5 md:px-8">
+    <div class="max-w-4xl reveal">
+      <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-muted-light">
+        {hero.eyebrow}
+      </p>
+      <h1 class="text-4xl font-bold leading-[1.08] tracking-tight text-heading md:text-6xl lg:text-7xl">
+        {hero.headline}
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-muted md:text-xl">
+        {hero.subtext}
+      </p>
+
+      <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+        <a
+          href={contact.bookingUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center rounded-full bg-accent-lime px-7 py-3.5 text-sm font-semibold text-dark shadow-card transition-all hover:-translate-y-0.5 hover:shadow-card-hover"
+        >
+          {hero.cta}
+        </a>
+        <p class="text-sm text-muted-light">
+          {brand.owner} · {brand.credentials.join(' · ')}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
