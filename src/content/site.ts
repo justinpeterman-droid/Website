@@ -13,6 +13,8 @@ export interface Hero {
 export interface Service {
   title: string;
   description: string;
+  image: string;
+  imageAlt: string;
 }
 
 export interface MissionSection {
@@ -148,26 +150,41 @@ export const site: Site = {
       title: "Neurolinguistic Programming (NLP)",
       description:
         'Identifying and updating the "internal software" of your thoughts to better align with your true identity.',
+      image:
+        "https://images.unsplash.com/photo-1499203539516-7fddd394601b?auto=format&fit=crop&w=900&q=80",
+      imageAlt: "Soft morning light over a calm journal and tea — mindful reflection",
     },
     {
       title: "Clinical & Ericksonian Hypnotherapy",
       description:
         "Gently shifting your focus inward to access the wisdom of your subconscious mind.",
+      image:
+        "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=900&q=80",
+      imageAlt: "Person in peaceful meditation with eyes closed in warm natural light",
     },
     {
       title: "Sound Frequency Healing",
       description:
         "Utilizing Solfeggio frequencies, mother nature, and sound therapy to create a harmonious environment for deep restoration.",
+      image:
+        "https://images.unsplash.com/photo-1598486788231-c0261a84c8cc?auto=format&fit=crop&w=900&q=80",
+      imageAlt: "Tibetan singing bowl resting on a wooden surface in soft light",
     },
     {
       title: "Somatic Movement & Breathwork",
       description:
         'Using yoga, mindfulness, and nervous system regulation to move out of "survival mode" and back into your body.',
+      image:
+        "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=900&q=80",
+      imageAlt: "Yoga practice at sunrise overlooking misty mountains",
     },
     {
       title: "Holistic Nutrition & Wellness",
       description:
         "Supporting your soul's purpose by nourishing the physical vessel that carries it.",
+      image:
+        "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=80",
+      imageAlt: "Fresh herbs and wholesome ingredients arranged on a wooden table",
     },
   ],
 
