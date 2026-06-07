@@ -98,3 +98,30 @@ Project-scoped agents live in `.cursor/agents/`. Invoke with `@` mentions in Cur
 | `@launch-coordinator` | Vercel deploy, domain DNS, OG meta, privacy page, go-live |
 
 Split work by concern: site changes → `@website-builder`; production launch → `@launch-coordinator`.
+
+## Cursor Cloud specific instructions
+
+Static Astro site — no database, backend, or `.env` files. Standard commands are in **Quick start** above.
+
+### Services
+
+| Service | Command | URL |
+|---------|---------|-----|
+| Astro dev server | `npm run dev -- --host 0.0.0.0` | http://localhost:4321 |
+| Production preview | `npm run build && npm run preview` | http://localhost:4321 (default) |
+
+Run the dev server in a **tmux** session for long-lived background work. The homepage is `/`; the free media library is `/library`.
+
+### Lint / test
+
+There is no ESLint, TypeScript check, or test runner in `package.json`. Use **`npm run build`** as the primary verification step after code changes.
+
+### Library media (optional)
+
+`public/media/` may only contain `.gitkeep`. Library cards render from `src/content/media.ts`, but Play/Save actions 404 until `.mp4`/`.mp3` files are added per `public/media/README.md`.
+
+### External dependencies (no local setup)
+
+- **Google Fonts** (Inter) — loaded from CDN in `BaseLayout.astro`; needs network for exact typography.
+- **Booking / support** — outbound links to Google Calendar and Google Forms (`site.ts`); not testable without external accounts.
+- **Vercel** — production deploy target; not required for local development.
