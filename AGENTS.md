@@ -34,21 +34,28 @@ Build verified: `npm run build` completes successfully.
 
 ```
 src/
-  content/site.ts       # All copy, links, contact — single source of truth
+  content/site.ts       # Site copy, links, contact, navigation, image paths
+  content/media.ts      # Free library catalog for /library
   layouts/BaseLayout.astro
   components/           # Nav, Hero, Credentials, Services, Showcase, Mission,
-                        # Reflection, About, CTABand, FAQ, Footer, ScrollReveal
+                        # Reflection, About, CTABand, FAQ, Footer, Archive,
+                        # ScrollReveal, MotionEffects
   pages/index.astro     # Wires all sections
+  pages/library.astro   # Wires the free library archive
   styles/global.css     # Framer design tokens + scroll-reveal utilities
+public/images/          # Local hero, service, preview, and showcase images
+public/media/           # Library audio/video/thumbnail uploads
 public/                 # favicon.ico, favicon.png, favicon.svg
 .cursor/agents/         # Project-scoped custom agents
 ```
 
 ## Content changes
 
-1. Edit **`src/content/site.ts`** for any visible copy, links, or CTAs.
-2. Do not hardcode URLs in components — import from `site.ts`.
-3. Run `npm run build` after substantive changes.
+1. Edit **`src/content/site.ts`** for visible site copy, navigation, links, contact info, CTAs, and site image paths.
+2. Edit **`src/content/media.ts`** for `/library` items. Add real media files under `public/media/` before publishing new catalog entries.
+3. Keep production images local under `public/images/` unless a task explicitly asks for remote assets.
+4. Do not hardcode booking, social, or footer URLs in components. Import them from `site.ts`.
+5. Run `npm run build` after substantive changes.
 
 ## Section map
 
@@ -65,6 +72,7 @@ public/                 # favicon.ico, favicon.png, favicon.svg
 | Booking CTA | `CTABand.astro` | `#contact` |
 | FAQ | `FAQ.astro` | — |
 | Footer | `Footer.astro` | — |
+| Free Library | `Archive.astro` via `pages/library.astro` | `/library` |
 
 ## Target branch
 
@@ -83,10 +91,11 @@ public/                 # favicon.ico, favicon.png, favicon.svg
 Another agent built the initial site (PR #1). Useful next tasks:
 
 1. **Deploy to Vercel** and attach `hometownserenity.com` (DNS steps in README).
-2. **Add OG/social image** — `BaseLayout.astro` has placeholder meta tags; add `og:image` and a `public/og-image` asset.
-3. **Replace stock imagery** — `Showcase.astro` uses an Unsplash placeholder; swap for Ashley's Canva photos from `justinpeterman-droid/Project` if needed.
+2. **Finalize social previews** — `BaseLayout.astro` has `og:image` pointing at `/images/hero-forest.jpg`; add a dedicated social card and `twitter:image` if launch requires exact preview sizing.
+3. **Replace stock-style imagery with Ashley's own photos** if brand assets become available. Current images are hosted locally in `public/images/`.
 4. **Retire Framer placeholder** — stop linking `snow-rules-755686.framer.app` once Vercel is live.
 5. **Privacy page** — not yet implemented; add `src/pages/privacy.astro` before launch if required.
+6. **Library media files** — add real files for the starter entries in `src/content/media.ts`, or remove entries that are not ready before publishing `/library`.
 
 ## Custom agents
 
