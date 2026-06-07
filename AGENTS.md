@@ -70,6 +70,10 @@ public/                 # favicon.ico, favicon.png, favicon.svg
 
 **All PRs MUST target `main`.**
 
+## Project rules (immersive portfolio)
+
+Cursor applies **`.cursor/rules/immersive-portfolio-marketing-site.mdc`** for UX, performance, accessibility, and the target Next.js + R3F stack. The live site is still **Astro 5** until a migration; when editing the current codebase, follow Astro conventions below unless the task explicitly moves to the immersive stack.
+
 ## Conventions
 
 - Static Astro output only — no backend or database.
