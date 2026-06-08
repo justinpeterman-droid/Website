@@ -2,6 +2,8 @@
 
 Add your free video and audio files here. The site will stream and offer downloads automatically.
 
+The catalog in `src/content/media.ts` already includes starter entries. Add files with those exact names before launch, or edit/remove the entries so visitors do not hit missing media.
+
 ## Folders
 
 | Folder | Formats |
