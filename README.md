@@ -1,10 +1,14 @@
 # Hometown Serenity
 
-Premium single-page website for **Hometown Serenity** — Ashley Romero, CMH, CAHA.
+Premium static website for **Hometown Serenity** by Ashley Romero, CMH, CAHA.
 
-Content is sourced from the Canva business site. Visual design follows the high-end layout patterns from the Framer Brandora template (Inter typography, card shadows, sticky nav, accordion FAQ).
+The site has a marketing homepage and a free video/audio library. Content is sourced from the Canva business site and kept in typed content files so copy, links, and media entries stay out of components.
+
+Visual design follows the high-end layout patterns from the Framer Brandora template: Inter typography, card shadows, sticky nav, scroll reveal, and soft motion effects.
 
 ## Local development
+
+Requires Node `>=22.12.0`.
 
 ```bash
 npm install
@@ -21,6 +25,15 @@ npm run preview
 ```
 
 Static output is written to `dist/`.
+
+## Routes and content
+
+| Route | Page file | Main content source | Notes |
+|-------|-----------|---------------------|-------|
+| `/` | `src/pages/index.astro` | `src/content/site.ts` | Marketing page sections, navigation, contact, footer cards, FAQs |
+| `/library` | `src/pages/library.astro` | `src/content/media.ts` | Free media archive rendered by `Archive.astro` |
+
+`SiteLayout.astro` wraps both routes with global chrome: `AnimatedBackground`, `Nav`, `Footer`, `ScrollReveal`, and `MotionEffects`. `BaseLayout.astro` owns the document shell, global CSS import, fonts, favicon links, and social meta tags.
 
 ## Deploy to Vercel
 
@@ -47,12 +60,20 @@ Upload MP4/MP3 files to `public/media/` and register them in `src/content/media.
 
 Visitors can stream content in a modal player or download files directly from the **Library** section.
 
+The catalog currently points at starter paths such as `/media/audio/grounding-breath.mp3` and `/media/videos/identity-reflection.mp4`. The folders are committed with `.gitkeep` files, but the media binaries and thumbnails must be added before launch or the catalog entries should be changed.
+
+Marketing imagery lives in `public/images/` and is referenced from `src/content/site.ts` and `src/layouts/BaseLayout.astro`. Keep those paths in sync when replacing art.
+
 ## Project structure
 
-- `src/content/site.ts` — all copy, links, and contact info
-- `src/content/media.ts` — free video/audio library catalog
-- `src/components/` — page sections (Nav, Hero, Services, Archive, FAQ, etc.)
-- `src/styles/global.css` — Framer design tokens and scroll-reveal utilities
+- `src/content/site.ts` - homepage copy, navigation, services, CTAs, contact, social links, footer cards, FAQs
+- `src/content/media.ts` - free video/audio library catalog
+- `src/layouts/BaseLayout.astro` - document shell, global CSS, fonts, favicon, social meta
+- `src/layouts/SiteLayout.astro` - shared nav, footer, background, and motion scripts
+- `src/components/` - page sections and shared UI components
+- `src/styles/global.css` - Framer design tokens and scroll-reveal utilities
+- `public/images/` - committed marketing and preview images
+- `public/media/` - library videos, audio files, and thumbnails
 
 ## Stack
 

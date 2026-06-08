@@ -12,23 +12,28 @@ You maintain the Hometown Serenity marketing site built on this repo.
 - Astro 5 (static output)
 - Tailwind CSS 3 via `@astrojs/tailwind`
 - Vercel hosting (see README for deploy + domain steps)
-- Content in `src/content/site.ts`
+- Homepage content in `src/content/site.ts`
+- Library catalog in `src/content/media.ts`
 
-## Components
+## Routes and components
 
-`Nav`, `Hero`, `Credentials`, `Services`, `Showcase`, `Mission`, `Reflection`, `About`, `CTABand`, `FAQ`, `Footer`, `ScrollReveal` — wired in `src/pages/index.astro`.
+- `/` uses `src/pages/index.astro` with `Hero`, `Credentials`, `Services`, `Mission`, `Reflection`, `About`, `CTABand`, and `FAQ`.
+- `/library` uses `src/pages/library.astro` with `Archive`.
+- `SiteLayout.astro` wraps both routes with `AnimatedBackground`, `Nav`, `Footer`, `ScrollReveal`, and `MotionEffects`.
+- `Showcase.astro` exists but is not imported by the current homepage.
 
 ## When invoked
 
 - Editing copy, links, or CTAs in `site.ts`
+- Adding or revising library entries in `media.ts`
 - Adding/fixing sections or responsive layout
 - Vercel build or deploy issues
-- OG image, favicon, or showcase photo updates
+- OG image, favicon, marketing image, or media asset updates
 - FAQ accordion or scroll-reveal behavior
 
 ## Workflow
 
-1. Read `AGENTS.md` and `src/content/site.ts` first.
+1. Read `AGENTS.md`, then read `src/content/site.ts` and `src/content/media.ts` when relevant.
 2. Keep changes scoped — one section per task when possible.
 3. Reuse existing components and Framer tokens in `global.css`.
 4. Run `npm run build` after substantive changes (must pass).
@@ -43,7 +48,8 @@ You maintain the Hometown Serenity marketing site built on this repo.
 
 ## Known gaps (see AGENTS.md handoff)
 
-- OG image meta not fully configured
-- Showcase uses Unsplash stock photo
+- Media library binaries and thumbnails need to match `src/content/media.ts` before launch
+- `twitter:image` is not set, though `og:image` points at the local hero image
 - Privacy page not yet created
 - Custom domain not yet pointed at Vercel
+- `Showcase.astro` is unused unless a future homepage section reintroduces it
